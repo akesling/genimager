@@ -70,5 +70,5 @@ except KeyboardInterrupt:
 	gene_file.write(str(canon))
 	gene_file.close()
 	
-print str(canon)
+print "\n"+ str(canon)
 grower.show()
