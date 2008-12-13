@@ -40,8 +40,8 @@ Choose a point at random and move it up the list.
 === Decrement point ===
 Choose a point at random and move it down the list.
 
-== Color/Opacity Actions ==
-These actions only affect color or opacity of the chromosomes.
+== Color Actions ==
+These actions only affect the color of the chromosomes.
 === New Color ===
 This takes a chromosome and assigns it a completely random new color(regardless of the previous color).
 === Change Color ===
@@ -50,6 +50,9 @@ This takes a chromosome and shifts its color values independently by a random (s
 This picks two chromosomes at random and switches their colors.
 === Shuffle Colors ===
 This takes the colors over every chromosome and randomly shuffles all of them.  Each chromosome gets a color that a chromosome had before (with each having equal probability).
+
+== Opacity Actions ==
+These actions only affect the opacity of the chromosomes.
 === New Opacity ===
 This takes a chromosome and assigns it a completely random new opacity(regardless of the previous opacity).
 === Change Opacity ===
