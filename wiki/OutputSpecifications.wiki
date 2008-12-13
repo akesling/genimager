@@ -15,20 +15,20 @@ Example Formatting for xml-based output:
         <blue>Blue Value From 0 to 255</blue>
         <opacity>Opacity Value From 0 to 255</opacity>
       </fill>
-      <points>
-         <pair>
+      <shape>
+         <point>
            <x>X Position</x>
            <y>Y Position</y>
-         </pair>
-         <pair>
+         </point>
+         <point>
            <x>X Position</x>
            <y>Y Position</y>
-         </pair>
-         <pair>
+         </point>
+         <point>
            <x>X Position</x>
            <y>Y Position</y>
-         </pair>
-      </points>
+         </point>
+      </shape>
     </polygon>
     <polygon>
       <fill>
@@ -37,20 +37,20 @@ Example Formatting for xml-based output:
         <blue>Blue Value From 0 to 255</blue>
         <opacity>Opacity Value From 0 to 255</opacity>
       </fill>
-      <points>
-         <pair>
+      <shape>
+         <point>
            <x>X Position</x>
            <y>Y Position</y>
-         </pair>
-         <pair>
+         </point>
+         <point>
            <x>X Position</x>
            <y>Y Position</y>
-         </pair>
-         <pair>
+         </point>
+         <point>
            <x>X Position</x>
            <y>Y Position</y>
-         </pair>
-      </points>
+         </point>
+      </shape>
     </polygon>
     <polygon>
       <fill>
@@ -59,20 +59,20 @@ Example Formatting for xml-based output:
         <blue>Blue Value From 0 to 255</blue>
         <opacity>Opacity Value From 0 to 255</opacity>
       </fill>
-      <points>
-         <2space>
+      <shape>
+         <point>
            <x>X Position</x>
            <y>Y Position</y>
-         </2space>
-         <2space>
+         </point>
+         <point>
            <x>X Position</x>
            <y>Y Position</y>
-         </2space>
-         <2space>
+         </point>
+         <point>
            <x>X Position</x>
            <y>Y Position</y>
-         </2space>
-      </points>
+         </point>
+      </shape>
     </polygon>
   </genome>
 </genome>
