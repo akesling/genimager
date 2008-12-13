@@ -6,11 +6,25 @@ This mutation function is made up of four basic sections, and each of these four
 *Special Case:* If the genome has no chomosomes, then it forces the mutation 'Insert Chomosome'.
 
 == Chomosome Actions ==
-These are actions that apply to polygons (chromosomes).
-=== Insert Chomosome ===
-Inserts a chromosome with no points at a random index.  This chromosome has a random color and opacity.
+These are actions that apply to chromosomes within the genome.
 
+*Special Case:* If the genome has 100 chromosomes, it will *not* 'insert chromosome'.  This is effectively the maximum number of chromosomes.
+=== Insert Chromosome ===
+Inserts a chromosome with no points at a random index.  This chromosome has a random color and opacity.
+=== Remove Chromosome ===
+Removes a chromosome from a randomly chosen index.
+=== Switch Chromosomes ===
+Choses two random chromosomes and switches them in place.
+=== Shuffle Chromosome ===
+Shuffle the order of all chromosomes.
 == Point Actions ==
+These actions affect the size, shape, and location of the chromosomes' phenotype.  The phenotype may be polygons, triangles, ellipses, circles, rectangles, diamonds, etc...
+=== Insert Point ===
+This randomly inserts a point.  For polygons, this inserts a point randomly into its list of points.  For ellipses and other phenotypes with a fixed number of points, this overwrites a randomly chosen with a new randomly placed point.
+=== Remove Point ===
+This randomly removes a point.  For polygons this removes a randomly selected point in the list of points.  For ellipses and other phenotypes with a fixed number of points, this overwrites a randomly chosen point with a new randomly placed point.
+=== Switch Points ===
+
 == Opacity Actions ==
 == Color Actions ==
 
