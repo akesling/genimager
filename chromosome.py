@@ -23,7 +23,9 @@ class Chromosome():
 	
 	def insert(self):
 		if len(self.outline) < self.PMAX:
-			self.outline.insert(random.randint(0, len(self.outline)), (random.randint(self.XMIN, self.XMAX), random.randint(self.YMIN, self.YMAX)))
+			self.outline.insert(random.randint(0, len(self.outline)), 
+				(random.randint(self.XMIN, self.XMAX),
+					 random.randint(self.YMIN, self.YMAX)))
 	
 	def delete(self):
 		if self.PMIN < len(self.outline):
@@ -45,7 +47,9 @@ class Chromosome():
 		if decide <= .5:
 			alpha_adjust = random.randint(-10, 10)
 		
-		self.fill_rgb = (max(0, min(255, self.fill_rgb[0] + red_adjust)),max(0, min(255, self.fill_rgb[1] + green_adjust)),max(0, min(255, self.fill_rgb[2] + blue_adjust)))
+		self.fill_rgb = (max(0, min(255, self.fill_rgb[0] + red_adjust)),
+						max(0, min(255, self.fill_rgb[1] + green_adjust)),
+						max(0, min(255, self.fill_rgb[2] + blue_adjust)))
 		
 		self.fill_a = max(0, min(255, self.fill_a + alpha_adjust))
 	
@@ -56,7 +60,15 @@ class Chromosome():
 		
 		point_index = random.randint(0, len(self.outline)-1)
 		
-		self.outline[point_index] = (max(self.XMIN, min(self.XMAX, self.outline[point_index][0] + x_adjust)), max(self.YMIN, min(self.YMAX, self.outline[point_index][1] + y_adjust)))
+		self.outline[point_index] = (
+			max(self.XMIN, min(self.XMAX, 
+					self.outline[point_index][0] + x_adjust)), 
+			max(self.YMIN, min(self.YMAX, 
+					self.outline[point_index][1] + y_adjust)))
 	
 	def __str__(self):
-		return "("+ str(self.fill_rgb) +","+ str(self.fill_a) +")<"+ str(self.outline) +">"
+		return "("+ str(self.fill_rgb[0]) +
+				","+ str(self.fill_rgb[1]) +
+				","+ str(self.fill_rgb[2]) +
+				","+ str(self.fill_a) +
+				")<"+ str(self.outline) +">"

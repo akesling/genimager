@@ -25,7 +25,8 @@ counter = 0
 since_change = 0
 since_write = 0
 base.show()
-print "Iter. |", "Fitness |", "% Similarity |", "Since Last Evolve |", "Polygons"
+print "Run Number:", run_id + "\n" + \
+	"Iter. |", "Fitness |", "% Similarity |", "Since Last Evolve |", "Polygons"
 while (1):
 	counter += 1
 	since_change += 1
