@@ -4,6 +4,7 @@
 = Introduction =
 
 By programmer:
+  * Take a 'archiving directory' and an 'image directory' by default
 
 == alexjray.ncsu ==
   * *Standardize output format!*
