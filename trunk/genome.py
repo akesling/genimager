@@ -2,19 +2,31 @@ import Image, ImageDraw, ImageChops, ImageStat
 import random, copy
 from chromosome import Chromosome
 class Genome():
-	modifiers = ("insert", "delete", "adjust_color", "adjust_point")
 	XMAX = 0
 	YMAX = 0
 	
-	def __init__(self, XMAX, YMAX):
-		self.XMAX = XMAX
-		self.YMAX = YMAX
-		
+	def __init__(self):
 		self.last_draw = None
 		
 		self.chromosomes = []
-		for i in xrange(100):
-			self.chromosomes.append(Chromosome(self.XMAX, self.YMAX))
+		for i in xrange(1):
+			self.add_chromosome()
+	
+	def __str__(self):
+		serial = "<"
+		serial += ";".join((str(i) for i in self.chromosomes))
+		return serial +">"
+	
+	def from_string(self, serial):
+		self.chromosomes = []
+		temp = serial.replace("<", "")
+		temp = temp.replace(">", "")
+		chromosomes = temp.split(";")	
+		
+		for chrom in chromosomes:
+			new_chrom = Chromosome(True)
+			new_chrom.from_string(chrom)
+			self.chromosomes.append(new_chrom)
 	
 	def gene_transfer(self, second):
 		second.last_draw = None
@@ -25,11 +37,12 @@ class Genome():
 	def mutate(self, rate):
 		#Adjust multiple chromosomes per iteration
 		#rate is the maximum percentage of chromosomes to adjust
-#		for i in random.sample(self.chromosomes, random.randint(0, int((len(self.chromosomes)-1)*(rate/100))+1)):
-#			eval("i."+ random.choice(self.modifiers) +"()")
+		for i in random.sample(self.chromosomes, random.randint(0, 
+				int((len(self.chromosomes)-1)*(rate/100))+1)):
+			i.mutate()
 		
 		#Adjust multiple chromosomes per iteration
-		eval("self.chromosomes["+ str(random.randint(0,len(self.chromosomes)-1)) +"]."+ random.choice(self.modifiers) +"()")
+		random.choice(self.chromosomes).mutate()
 		
 		#Polygon position and existence alteration
 		decide = random.random()
@@ -44,17 +57,20 @@ class Genome():
 			self.add_chromosome()
    
 	def delete_chromosome(self):
-		del self.chromosomes[random.randint(0,len(self.chromosomes)-1)]
+		if len(self.chromosomes) > 0:
+			del self.chromosomes[random.randint(0,len(self.chromosomes)-1)]
    	
 	def add_chromosome(self):
-		self.chromosomes.append(Chromosome(self.XMAX, self.YMAX))
+		self.chromosomes.append(Chromosome())
 	
 	def draw(self): 
 		base_layer = Image.new('RGBA',(self.XMAX,self.YMAX))
 		color_layer = Image.new('RGBA',(self.XMAX, self.YMAX))
 		color_layer_draw = ImageDraw.Draw(color_layer)
 		for chromosome in self.chromosomes:
-			color, opacity, points = chromosome.fill_rgb, chromosome.fill_a, chromosome.outline
+			color, opacity, points = chromosome.fill_rgb, \
+									 chromosome.fill_a, \
+									 chromosome.outline
 			color_layer_draw.rectangle((0,0, self.XMAX,self.YMAX), color)
 			alpha_mask = Image.new('L',(self.XMAX,self.YMAX), 0)
 			alpha_mask_draw = ImageDraw.Draw(alpha_mask)
@@ -81,6 +97,8 @@ class Genome():
 #				del_green = c1[1] - c2[1]
 #				del_blue = c1[2] - c2[2]
 #				
-#				pixel_fitness = del_red*del_red + del_green*del_green + del_blue*del_blue
+#				pixel_fitness = del_red*del_red + \
+#								del_green*del_green + \
+#								del_blue*del_blue
 #				fitness += pixel_fitness
 #		return fitness
