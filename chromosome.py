@@ -1,33 +1,87 @@
 import random
 class Chromosome():
-	def __init__(self, XMAX, YMAX):
-		#Point max & min
-		self.PMAX = 10
-		self.PMIN = 3
-		
-		border = 50
-		self.XMAX = XMAX + border
-		self.YMAX = YMAX + border
-		self.XMIN = -border
-		self.YMIN = -border
-		
-		self.outline = []
-		self.fill_rgb = (random.randint(0,255), random.randint(0,255), 
-			random.randint(0,255))
-		#Opacity can evolve, but start is fixed
-		self.fill_a = 10 #random.randint(0, 255)
-		
-		for i in xrange(random.randint(self.PMIN,self.PMAX)):
-			self.outline.append((random.randint(self.XMIN, self.XMAX), 
-				random.randint(self.YMIN, self.YMAX)))
+	RANGE = 0
+	XMAX = 0
+	YMAX = 0
+	EDGE = 50
+	PMAX = 10
+	PMIN = 3
 	
-	def insert(self):
+	def __init__(self, blank=False):
+		self.outline = []
+		
+		#If just needing an empty Chromosome
+		if blank:
+			self.fill_rgb = 0
+			self.fill_a = 0
+		else:
+			self.fill_rgb = (random.randint(0,255), random.randint(0,255), 
+				random.randint(0,255))
+			#Opacity can evolve, but start is fixed
+			self.fill_a = 10 #random.randint(0, 255)
+			
+			for i in xrange(random.randint(self.PMIN,self.PMAX)):
+				self.add_point()
+	
+	def __str__(self):
+		return "("+ str(self.fill_rgb[0]) + \
+				","+ str(self.fill_rgb[1]) + \
+				","+ str(self.fill_rgb[2]) + \
+				","+ str(self.fill_a) + \
+				"),"+ str(self.outline)
+	
+	@classmethod
+	def set_size(self, XMAX, YMAX):
+		#Point max & min
+		self.XMAX = XMAX + self.EDGE
+		self.YMAX = YMAX + self.EDGE
+		self.XMIN = -self.EDGE
+		self.YMIN = -self.EDGE
+	
+	@classmethod
+	def set_range(self, range):
+		self.RANGE = 100./range
+	
+	def from_string(self, serial):
+		self.outline = []
+		temp = serial.replace("(", "")
+		temp = temp.replace(")", "")
+		temp = temp.replace("[", "")
+		temp = temp.replace("]", "")
+		temp = temp.replace(" ", "")
+		intermediate = temp.split(",")
+		
+		self.fill_rgb = tuple(intermediate[0:3])
+		self.fill_a = intermediate[3]
+		self.outline = zip((int(i) for i in intermediate[4::2]), 
+							(int(i) for i in intermediate[5::2]))
+	
+	def mutate(self):
+		random.choice(self.MUTATORS)()
+	
+#Mutations
+	def insert_point(self):
+		XMAX = int(self.RANGE * self.XMAX)
+		XMIN = int(self.RANGE * self.XMIN)
+		YMAX = int(self.RANGE * self.YMAX)
+		YMIN = int(self.RANGE * self.YMIN)
+		
 		if len(self.outline) < self.PMAX:
 			self.outline.insert(random.randint(0, len(self.outline)), 
-				(random.randint(self.XMIN, self.XMAX),
-					 random.randint(self.YMIN, self.YMAX)))
+				(random.randint(XMIN, XMAX),
+					 random.randint(YMIN, YMAX)))
 	
-	def delete(self):
+	def add_point(self):
+		XMAX = int(self.RANGE * self.XMAX)
+		XMIN = int(self.RANGE * self.XMIN)
+		YMAX = int(self.RANGE * self.YMAX)
+		YMIN = int(self.RANGE * self.YMIN)
+		
+		if len(self.outline) < self.PMAX:
+			self.outline.append((random.randint(XMIN, XMAX),
+				random.randint(YMIN, YMAX)))
+	
+	def delete_point(self):
 		if self.PMIN < len(self.outline):
 			self.outline.remove(random.choice(self.outline))
 	
@@ -66,9 +120,8 @@ class Chromosome():
 			max(self.YMIN, min(self.YMAX, 
 					self.outline[point_index][1] + y_adjust)))
 	
-	def __str__(self):
-		return "("+ str(self.fill_rgb[0]) + \
-				","+ str(self.fill_rgb[1]) + \
-				","+ str(self.fill_rgb[2]) + \
-				","+ str(self.fill_a) + \
-				")<"+ str(self.outline) +">"
+	MUTATORS = (add_point, \
+				insert_point, \
+				delete_point, \
+				adjust_point, \
+				adjust_color)
