@@ -84,7 +84,7 @@ Example Formatting for xml-based output:
 </difference>
 }}}
 
-This example uses polygons as the entity that defines the image, but one could just as easily have {{{<line>}}}, {{{<rectangle>}}}, {{{<ellipse>}}}, or any other geometric shape (JUST KEEP THE NAMING CONVENTION STANDARD).
+This example uses polygons as the entity that defines the image, but one could just as easily have {{{<line>}}}, {{{<rectangle>}}}, {{{<ellipse>}}}, or any other geometric shape (JUST KEEP THE NAMING CONVENTION STANDARD).  The contents of {{{<shape>}}} would have to be changed accordingly.
 
 Genome 
 = Details =
