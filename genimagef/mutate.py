@@ -11,8 +11,8 @@
 #
 #  Special Case: If the genome has no chomosomes, 
 #   then it forces the mutation 'Insert Chomosome'.
-import copy, random
-from __main__ import ImageWidth, ImageHeight
+import copy
+from __main__ import ImageWidth, ImageHeight, random
 
 def mutate(DNA):
    """

@@ -3,8 +3,9 @@
 # Goes through the mutate functions and tests them
 ImageWidth = 20
 ImageHeight = 20
-import mutate, random
+import random
 random.seed()
+import mutate
 mDNA = []
 for i in xrange(500): mutate.insert_chromosome(mDNA)
 for i in xrange(300): mutate.remove_chromosome(mDNA)
