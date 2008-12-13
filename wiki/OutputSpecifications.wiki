@@ -4,9 +4,37 @@
 = Introduction =
 
 == Text-based Output ==
-Formatting for text-based output.
+Formatting for text-based output:
+<pre>
+ <genes width="Width of Image" height="Height of Image">
+   <genome gen="Your Generation Number Here">
+     [(R,G,B,O)<(x,y),(x,y),(x,y)...>,(R,G,B,O)<(x,y),(x,y),(x,y)...>,(R,G,B,O)<(x,y),(x,y),(x,y)...>...]
+   </genome>
+   <genome gen="Your Generation Number Here">
+     <polygon>
+       <fill>
+         <red>Red Value From 0 to 255</red>
+         <green>Green Value From 0 to 255</red>
+         <blue>Blue Value From 0 to 255</blue>
+         <opacity>Opacity Value From 0 to 255</opacity>
+       </fill>
+       <points>
+          <pair>
+            <x></x>
+            <y></y>
+          </pair>
+       </points>
+   </genome>
+ </genome>
+ 
+ <difference format="Your Format Here">
+   <Gen Number>--<Gen Number># <Difference Value>
+   <Gen Number>--<Gen Number># <Difference Value>
+ ...
+ </difference>
+</pre>
 
-
+Genome 
 = Details =
 
 Add your content here.  Format your content with:
