@@ -13,7 +13,7 @@ class Genome():
 		self.last_draw = None
 		
 		self.chromosomes = []
-		for i in xrange(50):
+		for i in xrange(100):
 			self.chromosomes.append(Chromosome(self.XMAX, self.YMAX))
 	
 	def gene_transfer(self, second):
@@ -25,11 +25,11 @@ class Genome():
 	def mutate(self, rate):
 		#Adjust multiple chromosomes per iteration
 		#rate is the maximum percentage of chromosomes to adjust
-		for i in random.sample(self.chromosomes, random.randint(0, int((len(self.chromosomes)-1)*(rate/100))+1)):
-			eval("i."+ random.choice(self.modifiers) +"()")
+#		for i in random.sample(self.chromosomes, random.randint(0, int((len(self.chromosomes)-1)*(rate/100))+1)):
+#			eval("i."+ random.choice(self.modifiers) +"()")
 		
 		#Adjust multiple chromosomes per iteration
-#		eval("self.chromosomes["+ str(random.randint(0,len(self.chromosomes)-1)) +"]."+ random.choice(self.modifiers) +"()")
+		eval("self.chromosomes["+ str(random.randint(0,len(self.chromosomes)-1)) +"]."+ random.choice(self.modifiers) +"()")
 		
 		#Polygon position and existence alteration
 		decide = random.random()
