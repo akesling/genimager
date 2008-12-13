@@ -17,6 +17,10 @@ Removes a chromosome from a randomly chosen index.
 Choses two random chromosomes and switches them in place.
 === Shuffle Chromosome ===
 Shuffle the order of all chromosomes.
+=== Increment Chromosome ===
+Choose a chromosome at random and move it up the list.
+=== Decrement Chromosome ===
+Choose a chromosome at random and move it down the list.
 == Point Actions ==
 These actions affect the size, shape, and location of the chromosomes' phenotype.  The phenotype may be polygons, triangles, ellipses, circles, rectangles, diamonds, etc...
 === Insert Point ===
@@ -24,7 +28,13 @@ This randomly inserts a point.  For polygons, this inserts a point randomly into
 === Remove Point ===
 This randomly removes a point.  For polygons this removes a randomly selected point in the list of points.  For ellipses and other phenotypes with a fixed number of points, this overwrites a randomly chosen point with a new randomly placed point.
 === Switch Points ===
-
+Chooses two points and randomly switches them in place.
+=== Shuffle Points ===
+Shuffle the order of all points in place.
+=== Move Point ===
+Chooses a point at random and moves it to a randomly chosen location.  This can be anywhere on the image (or even slightly off of it).
+=== Shift Point ===
+Chooses a point at random and moves it by a randomly selected amount.  This amount is in general smaller than the image to make this a much more gradual move than 'Move Point'.
 == Opacity Actions ==
 == Color Actions ==
 
