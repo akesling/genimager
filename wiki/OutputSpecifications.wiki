@@ -75,7 +75,75 @@ Example Formatting for xml-based output:
       </shape>
     </polygon>
   </genome>
-</genome>
+  <genome gen="Your Generation Number Here">
+    <polygon>
+      <fill>
+        <red>Red Value From 0 to 255</red>
+        <green>Green Value From 0 to 255</red>
+        <blue>Blue Value From 0 to 255</blue>
+        <opacity>Opacity Value From 0 to 255</opacity>
+      </fill>
+      <shape>
+         <point>
+           <x>X Position</x>
+           <y>Y Position</y>
+         </point>
+         <point>
+           <x>X Position</x>
+           <y>Y Position</y>
+         </point>
+         <point>
+           <x>X Position</x>
+           <y>Y Position</y>
+         </point>
+      </shape>
+    </polygon>
+    <polygon>
+      <fill>
+        <red>Red Value From 0 to 255</red>
+        <green>Green Value From 0 to 255</red>
+        <blue>Blue Value From 0 to 255</blue>
+        <opacity>Opacity Value From 0 to 255</opacity>
+      </fill>
+      <shape>
+         <point>
+           <x>X Position</x>
+           <y>Y Position</y>
+         </point>
+         <point>
+           <x>X Position</x>
+           <y>Y Position</y>
+         </point>
+         <point>
+           <x>X Position</x>
+           <y>Y Position</y>
+         </point>
+      </shape>
+    </polygon>
+    <polygon>
+      <fill>
+        <red>Red Value From 0 to 255</red>
+        <green>Green Value From 0 to 255</red>
+        <blue>Blue Value From 0 to 255</blue>
+        <opacity>Opacity Value From 0 to 255</opacity>
+      </fill>
+      <shape>
+         <point>
+           <x>X Position</x>
+           <y>Y Position</y>
+         </point>
+         <point>
+           <x>X Position</x>
+           <y>Y Position</y>
+         </point>
+         <point>
+           <x>X Position</x>
+           <y>Y Position</y>
+         </point>
+      </shape>
+    </polygon>
+  </genome>
+</genes>
  
 <difference format="Your Format Here">
   <comparison from="Generation Number" to="Generation Number">Difference Value</comparison>
