@@ -26,7 +26,7 @@ since_change = 0
 since_write = 0
 base.show()
 print "Run Number:", run_id + "\n" + \
-	"Iter. |", "Fitness |", "% Similarity |", "Since Last Evolve |", "Polygons"
+	"Iter. |", "Fitness |", "% Similarity |", "Since Last Evolve |", "Polygons |", "Alg. Fitness"
 while (1):
 	counter += 1
 	since_change += 1
@@ -46,9 +46,9 @@ while (1):
 		if since_write >= 10:
 			since_write = 0
 			grower.save("./images/"+ run_id +"_"+ str(counter) +".jpg", "JPEG")
-			print counter, mdifference, str(int(100-percent_diff)) +"%", since_change, len(canon.chromosomes), "saved"
+			print counter, mdifference, str(int(100-percent_diff)) +"%", since_change, len(canon.chromosomes), int(counter / (100-percent_diff)), "saved"
 		else:
-			print counter, mdifference, str(int(100-percent_diff)) +"%", since_change, len(canon.chromosomes)
+			print counter, mdifference, str(int(100-percent_diff)) +"%", since_change, len(canon.chromosomes), int(counter / (100-percent_diff))
 		since_change = 0
 
 grower.show()
