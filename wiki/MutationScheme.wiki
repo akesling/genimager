@@ -1,0 +1,23 @@
+#summary How the program mutates
+
+= genimagef's Mutation Scheme =
+This mutation function is made up of four basic sections, and each of these four sections has four actions. Every action has an equal weight except for special cases (where noted).
+
+*Special Case:* If the genome has no chomosomes, then it forces the mutation 'Insert Chomosome'.
+
+== Chomosome Actions ==
+These are actions that apply to polygons (chromosomes).
+=== Insert Chomosome ===
+Inserts a chromosome with no points at a random index.  This chromosome has a random color and opacity.
+
+== Point Actions ==
+== Opacity Actions ==
+== Color Actions ==
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
