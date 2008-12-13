@@ -27,6 +27,7 @@ By programmer:
 
 Visualizer:
   * Program/function to visualize based on output DNA info
+  * Represent progression in a single image by centering the final version in the middle and having a progression spiral (starting in the upper left) going clockwise inwards towards the final image.  This shows the substantial change in the image through the whole evolutionary process and gives the viewer a sense of how the final image came about.
 
 Future:
 * Make it a library/module that you can call with a little script in a dir w/ a base image
