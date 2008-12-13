@@ -72,10 +72,13 @@ def insert_chromosome(mDNA):
    This chromosome has a random color and opacity.
    """
    index = random.randint(0,len(mDNA))
-   color_red = random.randint(0,255)
-   color_green = random.randint(0,255)
-   color_blue = random.randint(0,255)
-   color = (color_red, color_blue, color_green)
+   if colormode == 'RGB':
+      color_red = random.randint(0,255)
+      color_green = random.randint(0,255)
+      color_blue = random.randint(0,255)
+      color = (color_red, color_blue, color_green)
+   else: #colormode == 'L':
+      color = random.randint(0,255)
    opacity = random.randint(0,255)
    points = []
    mDNA.insert(index, [color,opacity,points])
@@ -301,10 +304,13 @@ def new_color(mDNA):
     (regardless of the previous color).
    """
    index = random.randint(0,max(0,len(mDNA)-1))
-   color_red = random.randint(0,255)
-   color_green = random.randint(0,255)
-   color_blue = random.randint(0,255)
-   color = (color_red, color_blue, color_green)
+   if colormode == 'RGB':
+      color_red = random.randint(0,255)
+      color_green = random.randint(0,255)
+      color_blue = random.randint(0,255)
+      color = (color_red, color_blue, color_green)
+   else: #colormode == 'L':
+      color = random.randint(0,255)
    mDNA[index][0] = color
 
 def change_color(mDNA):
@@ -316,11 +322,16 @@ def change_color(mDNA):
     'New Color').
    """
    index = random.randint(0,max(0,len(mDNA)-1))
-   color_red = random.randint(-25,25)
-   color_green = random.randint(-25,25)
-   color_blue = random.randint(-25,25)
-   color = mDNA[index][0]
-   newcolor = (color[0]+color_red,color[1]+color_green,color[2]+color_blue)
+   if colormode == 'RGB':
+      color_red = random.randint(-25,25)
+      color_green = random.randint(-25,25)
+      color_blue = random.randint(-25,25)
+      color = mDNA[index][0]
+      newcolor = (color[0]+color_red,color[1]+color_green,color[2]+color_blue)
+   else: #colormode == 'L':
+      color_diff = random.randint(-25,25)
+      color = mDNA[index][0]
+      newcolor = color+color_diff
    mDNA[index][0] = newcolor
 
 def switch_colors(mDNA):
