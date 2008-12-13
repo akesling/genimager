@@ -10,13 +10,14 @@ def mutate(DNA):
    mDNA = copy.deepcopy(DNA) # make a copy of the DNA to mutate
    seed = random.randint(0,3)
    if seed == 0:
-      return mutate_chromosome(mDNA)
+      mutate_chromosome(mDNA)
    elif seed == 1:
-      return mutate_point(mDNA)
+      mutate_point(mDNA)
    elif seed == 2:
-      return mutate_color(mDNA)
+      mutate_color(mDNA)
    else: #seed ==3:
-      return mutate_opacity(mDNA)
+      mutate_opacity(mDNA)
+   return mDNA
 
 def mutate_chromosome(mDNA):
    """
@@ -26,59 +27,59 @@ def mutate_chromosome(mDNA):
    """
    seed = random.randint(0,5)
    if seed == 0:
-      return insert_chromosome(mDNA)
+      insert_chromosome(mDNA)
    elif seed == 1:
-      return remove_chromosome(mDNA)
+      remove_chromosome(mDNA)
    elif seed == 2:
-      return switch_chromosomes(mDNA)
+      switch_chromosomes(mDNA)
    elif seed == 3:
-      return shuffle_chromosomes(mDNA)
+      shuffle_chromosomes(mDNA)
    elif seed == 4:
-      return increment_chromosome(mDNA)
+      increment_chromosome(mDNA)
    else: #seed == 5:
-      return decrement_chromosome(mDNA)
+      decrement_chromosome(mDNA)
 
 def insert_chromosome(mDNA):
    """
    Insert Chromosome
    Inserts a chromosome with no points at a random index. This chromosome has a random color and opacity.
    """
-   return mDNA
+   mDNA
 
 def remove_chromosome(mDNA):
    """
    Remove Chromosome
    Removes a chromosome from a randomly chosen index.
    """
-   return mDNA
+   mDNA
 
 def switch_chromosomes(mDNA):
    """
    Switch Chromosomes
    Choses two random chromosomes and switches them in place.
    """
-   return mDNA
+   mDNA
 
 def shuffle_chromosomes(mDNA):
    """
    Shuffle Chromosomes
    Shuffle the order of all chromosomes.
    """
-   return mDNA
+   mDNA
 
 def increment_chromosome(mDNA):
    """
    Increment Chromosome
    Choose a chromosome at random and move it up the list.
    """
-   return mDNA
+   mDNA
 
 def decrement_chromosome(mDNA):
    """
    Decrement Chromosome
    Choose a chromosome at random and move it down the list.
    """
-   return mDNA
+   mDNA
 
 def mutate_point(mDNA):
    """
@@ -88,21 +89,21 @@ def mutate_point(mDNA):
    """
    seed = random.randint(0,7)
    if seed == 0:
-      return insert_point(mDNA)
+      insert_point(mDNA)
    elif seed == 1:
-      return remove_point(mDNA)
+      remove_point(mDNA)
    elif seed == 2:
-      return switch_points(mDNA)
+      switch_points(mDNA)
    elif seed == 3:
-      return shuffle_points(mDNA)
+      shuffle_points(mDNA)
    elif seed == 4:
-      return move_point(mDNA)
+      move_point(mDNA)
    elif seed == 5:
-      return shift_point(mDNA)
+      shift_point(mDNA)
    elif seed == 6:
-      return increment_point(mDNA)
+      increment_point(mDNA)
    else: #seed == 7:
-      return decrement_point(mDNA)
+      decrement_point(mDNA)
 
 def insert_point(mDNA):
    """
@@ -110,7 +111,7 @@ def insert_point(mDNA):
    This randomly inserts a point. For polygons, this inserts a point randomly into its list of points.
    For ellipses and other phenotypes with a fixed number of points, this overwrites a randomly chosen with a new randomly placed point.
    """
-   return mDNA
+   mDNA
 
 def remove_point(mDNA):
    """
@@ -118,28 +119,28 @@ def remove_point(mDNA):
    This randomly removes a point. For polygons this removes a randomly selected point in the list of points.
    For ellipses and other phenotypes with a fixed number of points, this overwrites a randomly chosen point with a new randomly placed point.
    """
-   return mDNA
+   mDNA
 
 def switch_points(mDNA):
    """
    Switch Points
    Chooses two points and randomly switches them in place.
    """
-   return mDNA
+   mDNA
 
 def shuffle_points(mDNA):
    """
    Shuffle Points
    Shuffle the order of all points in place.
    """
-   return mDNA
+   mDNA
 
 def move_point(mDNA):
    """
    Move Point
    Chooses a point at random and moves it to a randomly chosen location. This can be anywhere on the image (or even slightly off of it).
    """
-   return mDNA
+   mDNA
 
 def shift_point(mDNA):
    """
@@ -147,21 +148,21 @@ def shift_point(mDNA):
    Chooses a point at random and moves it by a randomly selected amount.
    This amount is in general smaller than the image to make this a much more gradual move than Move Point.
    """
-   return mDNA
+   mDNA
 
 def increment_point(mDNA):
    """
    Increment Point
    Choose a point at random and move it up the list.
    """
-   return mDNA
+   mDNA
 
 def decrement_point(mDNA):
    """
    Decrement point
    Choose a point at random and move it down the list.
    """
-   return mDNA
+   mDNA
 
 def mutate_color(mDNA):
    """
@@ -170,20 +171,20 @@ def mutate_color(mDNA):
    """
    seed = random.randint(0,5)
    if seed == 0:
-      return new_color(mDNA)
+      new_color(mDNA)
    elif seed == 1:
-      return change_color(mDNA)
+      change_color(mDNA)
    elif seed == 2:
-      return switch_colors(mDNA)
+      switch_colors(mDNA)
    else: #seed == 3:
-      return shuffle_colors(mDNA)
+      shuffle_colors(mDNA)
 
 def new_color(mDNA):
    """
    New Color
    This takes a chromosome and assigns it a completely random new color(regardless of the previous color).
    """
-   return mDNA
+   mDNA
 
 def change_color(mDNA):
    """
@@ -191,14 +192,14 @@ def change_color(mDNA):
    This takes a chromosome and shifts its color values independently by a random (small) difference.
    The resulting color is very close to the original color (as opposed to 'New Color').
    """
-   return mDNA
+   mDNA
 
 def switch_colors(mDNA):
    """
    Switch Colors
    This picks two chromosomes at random and switches their colors.
    """
-   return mDNA
+   mDNA
 
 def shuffle_colors(mDNA):
    """
@@ -206,7 +207,7 @@ def shuffle_colors(mDNA):
    This takes the colors over every chromosome and randomly shuffles all of them.
    Each chromosome gets a color that a chromosome had before (with each having equal probability).
    """
-   return mDNA
+   mDNA
 
 def mutate_opacity(mDNA):
    """
@@ -215,20 +216,20 @@ def mutate_opacity(mDNA):
    """
    seed = random.randint(0,3)
    if seed == 0:
-      return new_opacity(mDNA)
+      new_opacity(mDNA)
    elif seed == 1:
-      return change_opacity(mDNA)
+      change_opacity(mDNA)
    elif seed == 2:
-      return switch_opacities(mDNA)
+      switch_opacities(mDNA)
    else: #seed == 3:
-      return shuffle_opacities(mDNA)
+      shuffle_opacities(mDNA)
 
 def new_opacity(mDNA):
    """
    New Opacity
    This takes a chromosome and assigns it a completely random new opacity(regardless of the previous opacity).
    """
-   return mDNA
+   mDNA
 
 def change_opacity(mDNA):
    """
@@ -236,14 +237,14 @@ def change_opacity(mDNA):
    This takes a chromosome and shifts its opacity value by a random (small) difference.
    The resulting color is very close to the original color (as opposed to 'New Opacity').
    """
-   return mDNA
+   mDNA
 
 def switch_opacities(mDNA):
    """
    Switch Opacities
    This picks two chromosomes at random and switches their colors.
    """
-   return mDNA
+   mDNA
 
 def shuffle_opacities(mDNA):
    """
@@ -251,5 +252,5 @@ def shuffle_opacities(mDNA):
    This takes the opacity over every chromosome and randomly shuffles all of them.
    Each chromosome gets an opacity that a chromosome had before (with each having equal probability).
    """
-   return mDNA   
+   mDNA   
 
