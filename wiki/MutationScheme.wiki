@@ -15,7 +15,7 @@ Inserts a chromosome with no points at a random index.  This chromosome has a ra
 Removes a chromosome from a randomly chosen index.
 === Switch Chromosomes ===
 Choses two random chromosomes and switches them in place.
-=== Shuffle Chromosome ===
+=== Shuffle Chromosomes ===
 Shuffle the order of all chromosomes.
 === Increment Chromosome ===
 Choose a chromosome at random and move it up the list.
@@ -35,21 +35,26 @@ Shuffle the order of all points in place.
 Chooses a point at random and moves it to a randomly chosen location.  This can be anywhere on the image (or even slightly off of it).
 === Shift Point ===
 Chooses a point at random and moves it by a randomly selected amount.  This amount is in general smaller than the image to make this a much more gradual move than 'Move Point'.
+=== Increment Point ===
+Choose a point at random and move it up the list.
+=== Decrement point ===
+Choose a point at random and move it down the list.
+
 == Color/Opacity Actions ==
 These actions only affect color or opacity of the chromosomes.
 === New Color ===
 This takes a chromosome and assigns it a completely random new color(regardless of the previous color).
 === Change Color ===
 This takes a chromosome and shifts its color values independently by a random (small) difference.  The resulting color is very close to the original color (as opposed to 'New Color').
-=== Switch Colors ===
+=== Switchs Colors ===
 This picks two chromosomes at random and switches their colors.
-=== Shuffle Colors ===
+=== Shuffles Colors ===
 This takes the colors over every chromosome and randomly shuffles all of them.  Each chromosome gets a color that a chromosome had before (with each having equal probability).
 === New Opacity ===
 This takes a chromosome and assigns it a completely random new opacity(regardless of the previous opacity).
 === Change Opacity ===
 This takes a chromosome and shifts its opacity value by a random (small) difference.  The resulting color is very close to the original color (as opposed to 'New Opacity').
-=== Switch Opacity ===
+=== Switchs Opacity ===
 This picks two chromosomes at random and switches their colors.
-=== Shuffle Opacity ===
+=== Shuffles Opacity ===
 This takes the opacity over every chromosome and randomly shuffles all of them.  Each chromosome gets an opacity that a chromosome had before (with each having equal probability).
