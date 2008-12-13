@@ -24,6 +24,7 @@ By programmer:
   * Figure out what distribution of mutations and probabilites gives fastest results
   * Have the above probabilities mutate (meta-evolution)
   * Have the mutations/generation mutate
+  * Have a delicate-only mutation; moves very gradually (all polygons start at 0 opacity at background color)
 
 Visualizer:
   * Program/function to visualize based on output DNA info
