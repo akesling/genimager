@@ -2,22 +2,26 @@
 # Creates a genome (DNA) based on a bunch of chromosomes (polygons)
 # that mutates to look like a base image
 import Image, ImageDraw, ImageChops, ImageStat
-import copy, random
+import random
 random.seed()
 #MAIN
 basefile = 'darkwonder.jpg'
 filename = 'darkwonderBW'
 basecolor = 0
+colormode = 'L'
 DNA = []				# the 'kept' dna strand
 mDNA = []				# the 'mutated' dna strand
-base = Image.open('../images/'+filename+'/'+basefile)
-base = base.convert('L')
-DNAIm = Image.new('L',base.size) # Image from DNA
-mDNAIm = Image.new('L',base.size) # Image from mutated DNA
+base = Image.open('/home/ajray/images/'+filename+'/'+basefile)
+base = base.convert(colormode)
+DNAIm = Image.new(colormode,base.size) # Image from DNA
+mDNAIm = Image.new(colormode,base.size) # Image from mutated DNA
 diffIm = ImageChops.difference(DNAIm, base) # difference Image
 diffStat = ImageStat.Stat(diffIm) # Statistics instance for difference image
 ImageWidth, ImageHeight = base.size
-import mutateBW as mutate, fitnessBW as fitness
+if colormode == 'RGB':
+  import mutate as mutate, fitness as fitness
+elif colormode == 'L':
+  import mutateBW as mutate, fitnessBW as fitness
 difference = sum(diffStat.sum2)
 mdifference = difference
 counter = 0
@@ -39,4 +43,4 @@ while (difference >= 1E6):
     difference = mdifference
     print 'level up! counter:',counter,'diff:',difference,'gons:',len(DNA)
     if gencounter % 10 == 0:
-      DNAIm.save('../images/'+filename+'/'+filename+'_'+str(counter)+'.jpg','JPEG')
+      DNAIm.save('/home/ajray/images/'+filename+'/'+filename+'_'+str(counter)+'.jpg','JPEG')
