@@ -6,6 +6,11 @@ class Chromosome():
 	EDGE = 50
 	PMAX = 10
 	PMIN = 3
+	MUTATORS = ("add_point", \
+				"insert_point", \
+				"delete_point", \
+				"adjust_point", \
+				"adjust_color")
 	
 	def __init__(self, blank=False):
 		self.outline = []
@@ -57,7 +62,7 @@ class Chromosome():
 							(int(i) for i in intermediate[5::2]))
 	
 	def mutate(self):
-		random.choice(self.MUTATORS)()
+		eval("self."+ random.choice(self.MUTATORS) +"()")
 	
 #Mutations
 	def insert_point(self):
@@ -120,8 +125,3 @@ class Chromosome():
 			max(self.YMIN, min(self.YMAX, 
 					self.outline[point_index][1] + y_adjust)))
 	
-	MUTATORS = (add_point, \
-				insert_point, \
-				delete_point, \
-				adjust_point, \
-				adjust_color)
