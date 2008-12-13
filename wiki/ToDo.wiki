@@ -6,18 +6,18 @@
 By programmer:
 
 == alexjray.ncsu ==
-* Figure out what distribution of mutations and probabilites gives fastest results
-* Have the above probabilities mutate (meta-evolution)
-* Figure out how to handle a max number of polygons
-* Handle a max number of points
-* Automatically re-seed itself for a continued simulation (DNA and counter)
-* Mode settings: ('RGB','L') color and black & white
-* Figure out how far points should go off the edge
-* ?Remove polygons that aren't rendered
-* Get alpha layer drawing/masking working
-* Find a useful way to display percent or ln(p) completed
-* Have it intelligently start with the background color (using trim mean of histograms?)
-* Output images intelligently (at intervals of count or difference or percentage)
+ * Figure out what distribution of mutations and probabilites gives fastest results
+ * Have the above probabilities mutate (meta-evolution)
+ * Figure out how to handle a max number of polygons
+ * Handle a max number of points
+ * Automatically re-seed itself for a continued simulation (DNA and counter)
+ * Mode settings: ('RGB','L') color and black & white
+ * Figure out how far points should go off the edge
+ * ?Remove polygons that aren't rendered
+ * Get alpha layer drawing/masking working
+ * Find a useful way to display percent or ln(p) completed
+ * Have it intelligently start with the background color (using trim mean of histograms?)
+ * Output images intelligently (at intervals of count or difference or percentage)
 
 Future:
 * Make it a library/module that you can call with a little script in a dir w/ a base image
