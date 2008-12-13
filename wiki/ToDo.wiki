@@ -1,10 +1,11 @@
 #summary feature/settings/ideas for the future
+#labels Featured,Phase-Design
 
 = Introduction =
 
 By programmer:
 
-== alexjray.ncsy ==
+== alexjray.ncsu ==
 * Figure out what distribution of mutations and probabilites gives fastest results
 * Have the above probabilities mutate (meta-evolution)
 * Figure out how to handle a max number of polygons
