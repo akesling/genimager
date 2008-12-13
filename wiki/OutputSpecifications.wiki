@@ -4,7 +4,7 @@
 = Introduction =
 
 == Text-based Output ==
-Formatting for text-based output:
+Example Formatting for xml-based output:
 {{{
 <genes width="Width of Image" height="Height of Image">
   <genome gen="Your Generation Number Here">
@@ -78,11 +78,13 @@ Formatting for text-based output:
 </genome>
  
 <difference format="Your Format Here">
-  <Gen Number>--<Gen Number># <Difference Value>
-  <Gen Number>--<Gen Number># <Difference Value>
-...
+  <comparison from="Generation Number" to="Generation Number">Difference Value</comparison>
+  <comparison from="Generation Number" to="Generation Number">Difference Value</comparison>
+  <comparison from="Generation Number" to="Generation Number">Difference Value</comparison>
 </difference>
 }}}
+
+This example uses polygons as the entity that defines the image, but one could just as easily have <line>, <rectangle>, <ellipse>, or any other geometric shape (JUST KEEP THE NAMING CONVENTION STANDARD).
 
 Genome 
 = Details =
