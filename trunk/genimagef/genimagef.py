@@ -3,6 +3,7 @@
 # that mutates to look like a base image
 import Image, ImageDraw, ImageChops, ImageStat
 import copy, random
+random.seed()
 import mutate
 
 def draw(DNA):
