@@ -67,8 +67,8 @@ class Chromosome():
 					self.outline[point_index][1] + y_adjust)))
 	
 	def __str__(self):
-		return "("+ str(self.fill_rgb[0]) +
-				","+ str(self.fill_rgb[1]) +
-				","+ str(self.fill_rgb[2]) +
-				","+ str(self.fill_a) +
+		return "("+ str(self.fill_rgb[0]) + \
+				","+ str(self.fill_rgb[1]) + \
+				","+ str(self.fill_rgb[2]) + \
+				","+ str(self.fill_a) + \
 				")<"+ str(self.outline) +">"

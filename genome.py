@@ -38,10 +38,10 @@ class Genome():
 			to_be_moved = self.chromosomes[move_index]
 			self.chromosomes.remove(to_be_moved)
 			self.chromosomes.append(to_be_moved)
-#		elif decide < .22:
-#			self.delete_chromosome()
-#		elif decide < .24:
-#			self.add_chromosome()
+		elif decide < .22:
+			self.delete_chromosome()
+		elif decide < .24:
+			self.add_chromosome()
    
 	def delete_chromosome(self):
 		del self.chromosomes[random.randint(0,len(self.chromosomes)-1)]
