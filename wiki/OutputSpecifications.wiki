@@ -1,0 +1,15 @@
+#summary Specs for different types of output files
+#labels Featured,Phase-Implementation
+
+= Introduction =
+
+== Text-based Output ==
+Formatting for text-based output.
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
