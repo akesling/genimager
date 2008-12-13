@@ -25,6 +25,9 @@ By programmer:
   * Have the above probabilities mutate (meta-evolution)
   * Have the mutations/generation mutate
 
+Visualizer:
+  * Program/function to visualize based on output DNA info
+
 Future:
 * Make it a library/module that you can call with a little script in a dir w/ a base image
 
