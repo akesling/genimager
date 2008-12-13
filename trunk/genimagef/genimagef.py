@@ -18,10 +18,7 @@ mDNAIm = Image.new(colormode,base.size) # Image from mutated DNA
 diffIm = ImageChops.difference(DNAIm, base) # difference Image
 diffStat = ImageStat.Stat(diffIm) # Statistics instance for difference image
 ImageWidth, ImageHeight = base.size
-if colormode == 'RGB':
-  import mutate as mutate, fitness as fitness
-elif colormode == 'L':
-  import mutateBW as mutate, fitnessBW as fitness
+import mutate, fitness
 difference = sum(diffStat.sum2)
 mdifference = difference
 counter = 0
