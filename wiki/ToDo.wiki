@@ -7,8 +7,6 @@ By programmer:
 
 == alexjray.ncsu ==
   * *Standardize output format!*
-  * Figure out what distribution of mutations and probabilites gives fastest results
-  * Have the above probabilities mutate (meta-evolution)
   * Figure out how to handle a max number of polygons
   * Handle a max number of points
   * Automatically re-seed itself for a continued simulation (DNA and counter)
@@ -21,6 +19,11 @@ By programmer:
   * Output images intelligently (at intervals of count or difference or percentage)
   * ?Distribute simulation to VCL
   * Option = dont output images
+
+*Meta-Evolution*
+  * Figure out what distribution of mutations and probabilites gives fastest results
+  * Have the above probabilities mutate (meta-evolution)
+  * Have the mutations/generation mutate
 
 Future:
 * Make it a library/module that you can call with a little script in a dir w/ a base image
