@@ -49,3 +49,7 @@ This takes the colors over every chromosome and randomly shuffles all of them.  
 This takes a chromosome and assigns it a completely random new opacity(regardless of the previous opacity).
 === Change Opacity ===
 This takes a chromosome and shifts its opacity value by a random (small) difference.  The resulting color is very close to the original color (as opposed to 'New Opacity').
+=== Switch Opacity ===
+This picks two chromosomes at random and switches their colors.
+=== Shuffle Opacity ===
+This takes the opacity over every chromosome and randomly shuffles all of them.  Each chromosome gets an opacity that a chromosome had before (with each having equal probability).
