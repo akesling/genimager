@@ -19,8 +19,8 @@ By programmer:
  * Have it intelligently start with the background color (using trim mean of histograms?)
  * Output images intelligently (at intervals of count or difference or percentage)
 
-Future:
-* Make it a library/module that you can call with a little script in a dir w/ a base image
+=== Future ===
+ * Make it a library/module that you can call with a little script in a dir w/ a base image
 
 = Details =
 
