@@ -32,10 +32,10 @@ Future:
 * Make it a library/module that you can call with a little script in a dir w/ a base image
 
 == DONE! == 
-  * Take a 'archiving directory' and an 'image directory' by default
-  * *Standardize output format!*
-  * Mode settings: ('RGB','L') color and black & white
-  * Option = dont output images
+  * ~~Take a 'archiving directory' and an 'image directory' by default~~
+  * ~~*Standardize output format!*~~
+  * ~~Mode settings: ('RGB','L') color and black & white~~
+  * ~~Option = dont output images~~
 
 = Details =
 
