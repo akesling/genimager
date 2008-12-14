@@ -13,7 +13,7 @@
 #   then it forces the mutation 'Insert Chomosome'.
 import copy
 from genetic_imager import random
-global ImageWidth, ImageHeight, color_mode
+global imagewidth, imageheight, color_mode, phenotype
 
 def mutate(genome):
    """
@@ -188,8 +188,8 @@ def insert_point(mutated_genome,index):
    For ellipses and other phenotypes with a fixed number of points,
     this overwrites a randomly chosen with a new randomly placed point.
    """
-   Xval = random.randint(-int(ImageWidth/5.),int(ImageWidth*6./5.))
-   Yval = random.randint(-int(ImageHeight/5.),int(ImageHeight*6./5.))
+   Xval = random.randint(-int(imagewidth/5.),int(imagewidth*6./5.))
+   Yval = random.randint(-int(imageheight/5.),int(imageheight*6./5.))
    point = (Xval,Yval)
    point_index = random.randint(0,max(0,len(mutated_genome[index][2])))
    mutated_genome[index][2].insert(point_index, point)
@@ -229,8 +229,8 @@ def move_point(mutated_genome,index):
    Chooses a point at random and moves it to a randomly chosen location.
     This can be anywhere on the image (or even slightly off of it).
    """
-   Xval = random.randint(-int(ImageWidth/5.),int(ImageWidth*6./5.))
-   Yval = random.randint(-int(ImageHeight/5.),int(ImageHeight*6./5.))
+   Xval = random.randint(-int(imagewidth/5.),int(imagewidth*6./5.))
+   Yval = random.randint(-int(imageheight/5.),int(imageheight*6./5.))
    point = (Xval,Yval)
    point_index = random.randint(0,max(0,len(mutated_genome[index][2])-1))
    mutated_genome[index][2][point_index] = point
@@ -242,8 +242,8 @@ def shift_point(mutated_genome,index):
    This amount is in general smaller than the image to make this
     a much more gradual move than Move Point.
    """
-   Xval = random.randint(-int(ImageWidth*0.1),int(ImageWidth*0.1))
-   Yval = random.randint(-int(ImageHeight*0.1),int(ImageHeight*0.1))
+   Xval = random.randint(-int(imagewidth*0.1),int(imagewidth*0.1))
+   Yval = random.randint(-int(imageheight*0.1),int(imageheight*0.1))
    point_index = random.randint(0,max(0,len(mutated_genome[index][2])-1))
    point = mutated_genome[index][2][point_index]
    newpoint = (point[0]+Xval,point[1]+Yval)
