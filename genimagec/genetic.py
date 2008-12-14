@@ -7,7 +7,8 @@ random.seed()
 
 run_id = str(random.randint(0,9999999999))
 ###########################################
-filename = "Captain_Jack_Sparrow.jpg"
+filename = "mona-lisa.jpg"
+#serial = "mona_del.gen"
 ###########################################
 base = Image.open(filename)
 base = base.convert('RGBA')
@@ -18,11 +19,14 @@ Xmax, Ymax = base.size
 Genome.XMAX = Xmax
 Genome.YMAX = Ymax
 Chromosome.set_size(Xmax, Ymax)
-Chromosome.set_range(50)#%
+Chromosome.set_range(100)
 
 canon = Genome()
 mutant = Genome()
 grower = Image.new('RGBA',base.size) # Image from DNA
+
+if locals().has_key("serial"):
+	canon.from_string(open(serial, "r").read())
 
 # MAIN
 difference = 5000000000000
@@ -42,6 +46,7 @@ try:
 		if (counter % 50 == 0):
 			print counter
 		canon.gene_transfer(mutant)
+#		Chromosome.set_range(max(100, percent_diff))
 		mutant.mutate(mutation_rate)
 		mdifference = mutant.diff(base)
 		if mdifference <= difference:

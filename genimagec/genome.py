@@ -35,26 +35,58 @@ class Genome():
 			second.chromosomes.append(copy.deepcopy(i))
 	
 	def mutate(self, rate):
-		#Adjust multiple chromosomes per iteration
-		#rate is the maximum percentage of chromosomes to adjust
-		for i in random.sample(self.chromosomes, random.randint(0, 
-				int((len(self.chromosomes)-1)*(rate/100))+1)):
-			i.mutate()
-		
-		#Adjust multiple chromosomes per iteration
-		random.choice(self.chromosomes).mutate()
-		
-		#Polygon position and existence alteration
-		decide = random.random()
-		if decide < .2:
-			move_index = random.randint(0,len(self.chromosomes)-1)
-			to_be_moved = self.chromosomes[move_index]
-			self.chromosomes.remove(to_be_moved)
-			self.chromosomes.append(to_be_moved)
-		elif decide < .22:
+		#Polygon z-position and existence alteration
+		mutation = random.randint(0,10)
+		if mutation == 0:
+			self.mutate_position()
+		elif mutation <= 5:
+			self.mutate_shape()
+		elif mutation <= 10:
+			self.mutate_color()
+#		else:
+#			#Adjust one chromosome per iteration
+#			random.choice(self.chromosomes).mutate()
+#			#Adjust multiple chromosomes per iteration
+#			#rate is the maximum percentage of chromosomes to adjust
+#			for i in random.sample(self.chromosomes, random.randint(0, 
+#					int((len(self.chromosomes)-1)*(rate/100))+1)):
+#				i.mutate()
+	
+##Mutations##
+	def mutate_color(self):
+		decide = random.randint(0,1)
+		if decide == 0:
+			random.choice(self.chromosomes).adjust_color()
+		else:
+			random.choice(self.chromosomes).adjust_opacity()
+	
+	def mutate_shape(self):
+		decide = random.randint(0,2)
+		if decide == 0:
+			random.choice(self.chromosomes).insert_point()
+		elif decide == 1:
+			random.choice(self.chromosomes).delete_point()
+		else:
+			random.choice(self.chromosomes).adjust_point()
+	
+	def mutate_position(self):
+		decide = random.randint(0,2)
+		if decide == 0:
+			self.swap_chromosome()
+		elif decide == 1:
 			self.delete_chromosome()
-		elif decide < .24:
+		else:
 			self.add_chromosome()
+	
+##Chromosomal Positioning##
+	def swap_chromosome(self, first=False, second=False):
+		if len(self.chromosomes) > 1:
+			if not (first and second):
+				first = random.randint(0,len(self.chromosomes)-1)
+				second = random.randint(0,len(self.chromosomes)-1)
+			to_swap = self.chromosomes[first]
+			self.chromosomes[first] = self.chromosomes[second]
+			self.chromosomes[second] = to_swap
    
 	def delete_chromosome(self):
 		if len(self.chromosomes) > 0:
@@ -63,6 +95,7 @@ class Genome():
 	def add_chromosome(self):
 		self.chromosomes.append(Chromosome())
 	
+##Fitness##
 	def draw(self): 
 		base_layer = Image.new('RGBA',(self.XMAX,self.YMAX))
 		color_layer = Image.new('RGBA',(self.XMAX, self.YMAX))
@@ -83,22 +116,5 @@ class Genome():
 	def diff(self, base):
 		diffIm = ImageChops.difference(self.draw(), base)
 		diffStat = ImageStat.Stat(diffIm)
-		difference = sum(diffStat.sum) #stat.sum returns a list of each color sum
+		difference = sum(diffStat.sum)
 		return difference
-#		my_pixels = self.draw().load()
-#		
-#		fitness = 0
-#		for y in xrange(self.YMAX):
-#			for x in xrange(self.XMAX):
-#				c1 = base[x, y]
-#				c2 = my_pixels[x, y]
-#				
-#				del_red = c1[0] - c2[0]
-#				del_green = c1[1] - c2[1]
-#				del_blue = c1[2] - c2[2]
-#				
-#				pixel_fitness = del_red*del_red + \
-#								del_green*del_green + \
-#								del_blue*del_blue
-#				fitness += pixel_fitness
-#		return fitness
