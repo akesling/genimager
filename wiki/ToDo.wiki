@@ -2,16 +2,14 @@
 #labels Featured,Phase-Design
 
 = Introduction =
-
-By programmer:
-  * Take a 'archiving directory' and an 'image directory' by default
-
 == alexjray.ncsu ==
-  * *Standardize output format!*
+Top Stuff:
+  * Downsampling - base image is smaller than it started (1/4?)
+  * Upsampling - genome image is larger (4x?) than base (stays the same)
+
   * Figure out how to handle a max number of polygons
   * Handle a max number of points
   * Automatically re-seed itself for a continued simulation (DNA and counter)
-  * Mode settings: ('RGB','L') color and black & white
   * Figure out how far points should go off the edge
   * ?Remove polygons that aren't rendered
   * Get alpha layer drawing/masking working
@@ -19,7 +17,6 @@ By programmer:
   * Have it intelligently start with the background color (using trim mean of histograms?)
   * Output images intelligently (at intervals of count or difference or percentage)
   * ?Distribute simulation to VCL
-  * Option = dont output images
 
 *Meta-Evolution*
   * Figure out what distribution of mutations and probabilites gives fastest results
@@ -33,6 +30,12 @@ Visualizer:
 
 Future:
 * Make it a library/module that you can call with a little script in a dir w/ a base image
+
+== DONE! == 
+  * Take a 'archiving directory' and an 'image directory' by default
+  * *Standardize output format!*
+  * Mode settings: ('RGB','L') color and black & white
+  * Option = dont output images
 
 = Details =
 
