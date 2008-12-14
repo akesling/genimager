@@ -1,5 +1,7 @@
 #summary How the program mutates
 
+<wiki:toc>
+
 = genimagef's Mutation Scheme =
 This mutation function is made up of four basic sections, and each of these four sections has four actions. Every action has an equal weight except for special cases (where noted).
 
