@@ -5,6 +5,7 @@ Every chomosome (individual shape) is a list with three elements:
   * Opacity - an opacity to shade the shape with
   * Points - a list of points which defines where the polygon goes on the image
 
+*Note:* Only polygons works currently.
 == Polygons ==
 This is the basic shape we started with.  A polygon which has 3 or more points.
 
