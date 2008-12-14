@@ -14,29 +14,29 @@ This is the basic shape we started with.  A polygon which has 3 or more points.
 == Polygon3 ==
 This is the second type of polygons.  Polygons with 3 or more points are drawn normally, and polygons with 2 points are drawn as a line segment and polygons with 1 point are drawn as points.
 
-{{{Poly3: [(x,y),...]}}}
+`Poly3: [(x,y),...]`
 
 == Triangles ==
 These are similar to the first type of polygon, except these are limited to exactly 3 points.
 
-{{{Trig: [(x,y),(x,y),(x,y)]}}}
+`Trig: [(x,y),(x,y),(x,y)]`
 
 == Circles ==
 These are circles.  We identify them by a centerpoint and a radius.
 
-{{{Circ: (x,y,r)}}}
+`Circ: (x,y,r)`
 
 Note: The Python Imaging Library only has an ellipse function, so we use that information to draw a 'squared' ellipse or a circle.
 
 == Pieslices ==
 These are pie (radial) slices of circles.  They are identified by a centerpoint, radius, start angle (theta,,0,,) and end angle (theta,,1,,).  These angles are measured clockwise from horizontal.
 
-{{{PieS: (x,y,r,theta,,0,,,theta,,1,,)}}}
+`PieS: (x,y,r,theta0,theta1)`
 
 == Chord ==
 These are like pie slices except instead of being radial, the arc's endpoints are connected with a straight line.  These are identified with the same elements as a pieslice.
 
-`Chord: (x,y,r,theta,,0,,,theta,,1,,)`
+`Chord: (x,y,r,theta0,theta1)`
 
 == Ellipses ==
 These are ellipses, they are identified by the opposite corners smallest orthogonal rectangle that contains them.  This means the orientation of the ellipse must be orthogonal (they can only be horizontal or vertical ellipses).
