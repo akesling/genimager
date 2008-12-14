@@ -61,6 +61,13 @@ These are rotated rectangles, they are like rectangles exept there is an added a
 
 `RectR: (theta,(x,y),(x,y))`
 
+== Text ==
+This draws text.  Should probably be combined with heavy upsampling (the genetic image is many times larger than the base image) so that the text is recognizeable.
+
+`Text: ((x,y),"string",font)`
+
+Where _font_ is an instance of ImageFont.
+
 = Details =
 
 Add your content here.  Format your content with:
