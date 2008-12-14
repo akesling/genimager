@@ -7,7 +7,7 @@ import random
 random.seed()
 
 def genimage(image_path, archive_dir='.', max_generations=None, \
-   color_mode='RGB', save_interval=1, output_type=None):
+   color_mode='RGB', save_interval=1, output_type=None, phenotype="Poly"):
    """
    Genetic Imager
    This takes an image, as well as operational parameters
@@ -48,6 +48,7 @@ def genimage(image_path, archive_dir='.', max_generations=None, \
    fitness.color_mode = color_mode
    fitness.background_color = background_color
    fitness.base_image = base_image
+   fitness.phenotype = phenotype
    # 
    genome_image = fitness.draw_genome(genome) # Image from genome
    difference = fitness.image_difference(genome_image)
