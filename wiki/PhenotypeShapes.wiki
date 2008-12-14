@@ -6,7 +6,7 @@
 Every chomosome (individual shape) is a list with three elements:
   * Color - a color to shade the shape with
   * Opacity - an opacity to shade the shape with
-  * Points - a list of points which defines where the polygon goes on the image; the exception to this is where the list would only contain exactly one element (a tuple) then the 'points' is that tuple itself.
+  * Points - a list of points which defines where the polygon goes on the image; the exception to this is where the list would only contain exactly one element (a tuple) then the 'points' is that tuple itself.  Additionally, anything with a fixed number of points is a tuple of tuples (e.g. triangles).
 
 *Note:* Only polygons works currently.
 == Polygons ==
@@ -22,7 +22,7 @@ This is the second type of polygons.  Polygons with 3 or more points are drawn n
 == Triangles ==
 These are similar to the first type of polygon, except these are limited to exactly 3 points.
 
-`Trig: [(x,y),(x,y),(x,y)]`
+`Trig: ((x,y),(x,y),(x,y))`
 
 == Circles ==
 These are circles.  We identify them by a centerpoint and a radius.
@@ -44,22 +44,22 @@ These are like pie slices except instead of being radial, the arc's endpoints ar
 == Ellipses ==
 These are ellipses, they are identified by the opposite corners smallest orthogonal rectangle that contains them.  This means the orientation of the ellipse must be orthogonal (they can only be horizontal or vertical ellipses).
 
-`Ellip: [(x,y),(x,y)]`
+`Ellip: ((x,y),(x,y))`
 
 == Rotated Ellipses ==
 These are ellipses that can be rotated.  They are identified by the orthogonal rectangle that contains them and the angle (theta) it is rotated counterclockwise.  They are rotated about their center.
 
-`EllipR: [theta,(x,y),(x,y)]`
+`EllipR: ((theta,(x,y),(x,y))`
 
 == Rectangles ==
 These are orthogonal rectangles.  They are identified like ellipses, with coordinates for opposite corners.
 
-`Rect: [(x,y),(x,y)]`
+`Rect: ((x,y),(x,y))`
 
 == Rotated Rectangles ==
 These are rotated rectangles, they are like rectangles exept there is an added angle, theta, that the rectangles are rotated about their center.
 
-`RectR: [theta,(x,y),(x,y)]`
+`RectR: (theta,(x,y),(x,y))`
 
 = Details =
 
