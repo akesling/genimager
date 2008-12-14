@@ -37,18 +37,19 @@ def genimage(image_path, archive_dir='.', max_generations=None, \
       background_color = 0
    genome = []	# the genome - this is what mutates
    base_image = Image.open(image_path).convert(color_mode)
-   ImageWidth, ImageHeight = base_image.size
+   imagewidth, imageheight = base_image.size
    import mutate, fitness
    # Set the globals
-   mutate.ImageWidth = ImageWidth
-   fitness.ImageWidth = ImageWidth
-   mutate.ImageHeight = ImageHeight
-   fitness.ImageHeight = ImageHeight
+   mutate.imagewidth = imagewidth
+   fitness.imagewidth = imagewidth
+   mutate.imageheight = imageheight
+   fitness.imageheight = imageheight
    mutate.color_mode = color_mode
    fitness.color_mode = color_mode
    fitness.background_color = background_color
    fitness.base_image = base_image
    fitness.phenotype = phenotype
+   mutate.phenotype = phenotype
    # 
    genome_image = fitness.draw_genome(genome) # Image from genome
    difference = fitness.image_difference(genome_image)
