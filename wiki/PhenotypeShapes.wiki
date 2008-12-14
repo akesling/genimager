@@ -1,4 +1,7 @@
 #summary Summary of the different kind of phenotypes(shapes)
+
+<wiki:toc>
+
 = Shapes =
 Every chomosome (individual shape) is a list with three elements:
   * Color - a color to shade the shape with
