@@ -19,6 +19,7 @@ diffIm = ImageChops.difference(DNAIm, base) # difference Image
 diffStat = ImageStat.Stat(diffIm) # Statistics instance for difference image
 ImageWidth, ImageHeight = base.size
 import mutate, fitness
+
 difference = sum(diffStat.sum2)
 mdifference = difference
 counter = 0
