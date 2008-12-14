@@ -2,7 +2,7 @@
 #  Fitness Function
 #  This is how the program decides if a genome is fit
 import Image, ImageDraw, ImageChops, ImageStat
-from genetic_imager import ImageWidth, ImageHeight, background_color, color_mode
+global background_color, color_mode, ImageWidth, ImageHeight, base_image
 
 def draw_genome(genome):
   genome_image = Image.new(color_mode,(ImageWidth,ImageHeight),background_color)
@@ -15,7 +15,7 @@ def draw_genome(genome):
       genome_image = Image.composite(color_mask,genome_image,polygon_mask)
   return genome_image
 
-def image_difference(genome_image, base_image):
+def image_difference(genome_image):
    """
    Image Difference
    takes two images and returns the differece
