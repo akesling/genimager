@@ -12,7 +12,8 @@
 #  Special Case: If the genome has no chomosomes, 
 #   then it forces the mutation 'Insert Chomosome'.
 import copy
-from genetic_imager import ImageWidth, ImageHeight, random, color_mode
+from genetic_imager import random
+global ImageWidth, ImageHeight, color_mode
 
 def mutate(genome):
    """
