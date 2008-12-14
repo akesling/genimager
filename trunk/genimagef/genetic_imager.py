@@ -68,5 +68,6 @@ def genimage(image_path, archive_dir='.', max_generations=None, \
          genome_image = mutated_image
          difference = mutation_difference
          print 'level up! counter:',generation_counter,'diff:',difference,'success_counter:',success_counter
+         print genome
          if save_interval != None and success_counter % save_interval == 0:
             genome_image.save(archive_dir + '/' + filename + '_' + str(generation_counter)+'.jpg','JPEG')
