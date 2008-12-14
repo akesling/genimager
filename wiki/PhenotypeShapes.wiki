@@ -1,0 +1,55 @@
+#summary Summary of the different kind of phenotypes(shapes)
+= Shapes =
+Every chomosome (individual shape) is a list with three elements:
+  * Color - a color to shade the shape with
+  * Opacity - an opacity to shade the shape with
+  * Points - a list of points which defines where the polygon goes on the image
+
+== Polygons ==
+This is the basic shape we started with.  A polygon which has 3 or more points.
+
+Poly: [(x,y),(x,y),(x,y),...] 
+
+== Polygon3 ==
+This is the second type of polygons.  Polygons with 3 or more points are drawn normally, and polygons with 2 points are drawn as a line segment and polygons with 1 point are drawn as points.
+
+Poly3: [(x,y),...]
+
+== Triangles ==
+These are similar to the first type of polygon, except these are limited to exactly 3 points.
+
+Trig: [(x,y),(x,y),(x,y)]
+
+== Circles ==
+These are circles.  We identify them by a centerpoint and a radius.
+
+Circ: [(x,y,r)]
+
+Note: The Python Imaging Library only has an ellipse function, so we use that information to draw a 'squared' ellipse or a circle.
+
+== Ellipses ==
+These are ellipses, they are identified by the opposite corners smallest orthogonal rectangle that contains them.  This means the orientation of the ellipse must be orthogonal (they can only be horizontal or vertical ellipses).
+
+Ellip: [(x,y),(x,y)]
+
+== Rotated Ellipses ==
+These are ellipses that can be rotated.  They are identified by the orthogonal rectangle that contains them and the angle (theta) it is rotated counterclockwise.  They are rotated about their center.
+
+EllipR: [theta,(x,y),(x,y)]
+
+== Rectangles ==
+These are orthogonal rectangles.  They are identified like ellipses, with coordinates for opposite corners.
+
+Rect: [(x,y),(x,y)]
+
+== Rotated Rectangles ==
+These are rotated rectangles, they are like rectangles exept there is an added angle, theta, that the rectangles are rotated about their center.
+
+RectR: [theta,(x,y),(x,y)]
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
