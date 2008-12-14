@@ -6,7 +6,7 @@
 == Text-based Output ==
 Example Formatting for xml-based output:
 {{{
-<genes width="Width of Image" height="Height of Image">
+<genes width="Width of Image" height="Height of Image" background_color="Background Color" color_mode="Color Mode">
   <genome gen="Your Generation Number Here">
     <polygon>
       <fill>
