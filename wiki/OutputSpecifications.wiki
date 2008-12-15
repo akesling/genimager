@@ -155,9 +155,8 @@ Example Formatting for xml-based output:
 This example uses polygons as the entity that defines the image, but one could just as easily have {{{<line>}}}, {{{<rectangle>}}}, {{{<ellipse>}}}, or any other geometric shape (JUST KEEP THE NAMING CONVENTION STANDARD).  The contents of {{{<shape>}}} would have to be changed accordingly.
 
 Genome 
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+= Difference Formats =
+== Difference Format ==
+Shows only the difference between successful generations.  Gives the "surviving species'" history of evolution.
+== History Format ==
+Shows a complete history of the entire species, records every mutation as well as if it was successful or not.  Used for statistical analysis of success of different mutation probability distributions.
