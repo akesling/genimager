@@ -160,9 +160,35 @@ def mutate_point(mutated_genome):
    The phenotype may be polygons, triangles, ellipses,
     circles, rectangles, diamonds, etc...
    """
+   if phenotype == 'Poly':
+      mutate_point_poly(mutated_genome)
+   elif phenotype == 'Poly3':
+      mutate_point_poly3(mutated_genome)
+   elif phenotype == 'Trig':
+      mutate_point_trig(mutated_genome)
+   elif phenotype == 'Circ':
+      mutate_point_circ(mutated_genome)
+   elif phenotype == 'Ellip':
+      # ellipses points are the same as rectangles
+      mutate_point_rect(mutated_genome)
+   elif phenotype == 'Rect':
+      mutate_point_rect(mutated_genome)
+   elif phenotype == 'Line':
+      # poly3 is same point setup as line
+      mutate_point_poly3(mutated_genome)
+   elif phenotype == 'WLine':
+      mutate_point_wline(mutated_genome)
+
+def mutate_point_poly(mutated_genome):
+   """
+   Point Mutation
+   These actions affect the size, shape,
+    and location of the chromosomes' phenotype.
+   The phenotype is polygons
+   """
    seed = random.randint(0,7)
    index = random.randint(0,max(0,len(mutated_genome)-1))
-   if len(mutated_genome[index][2]) <= 3: seed = 0
+   if len(mutated_genome[index][2]) < 3: seed = 0
    if seed == 0:
       insert_point(mutated_genome,index)
    elif seed == 1:
@@ -179,6 +205,106 @@ def mutate_point(mutated_genome):
       increment_point(mutated_genome,index)
    else: #seed == 7:
       decrement_point(mutated_genome,index)
+
+def mutate_point_poly3(mutated_genome):
+   """
+   Point Mutation
+   These actions affect the size, shape,
+    and location of the chromosomes' phenotype.
+   The phenotype is polygon3
+   """
+   seed = random.randint(0,7)
+   index = random.randint(0,max(0,len(mutated_genome)-1))
+   if len(mutated_genome[index][2]) < 1: seed = 0
+   if seed == 0:
+      insert_point(mutated_genome,index)
+   elif seed == 1:
+      remove_point(mutated_genome,index)
+   elif seed == 2:
+      switch_points(mutated_genome,index)
+   elif seed == 3:
+      shuffle_points(mutated_genome,index)
+   elif seed == 4:
+      move_point(mutated_genome,index)
+   elif seed == 5:
+      shift_point(mutated_genome,index)
+   elif seed == 6:
+      increment_point(mutated_genome,index)
+   else: #seed == 7:
+      decrement_point(mutated_genome,index)
+
+def mutate_point_wline(mutated_genome):
+   """
+   Point Mutation
+   These actions affect the size, shape,
+    and location of the chromosomes' phenotype.
+   The phenotype is wide line
+   """
+   seed = random.randint(0,7)
+   index = random.randint(0,max(0,len(mutated_genome)-1))
+   if len(mutated_genome[index][2]) < 1: seed = 0
+   if seed == 0:
+      insert_point_wline(mutated_genome,index)
+   elif seed == 1:
+      remove_point_wline(mutated_genome,index)
+   elif seed == 2:
+      switch_points_wline(mutated_genome,index)
+   elif seed == 3:
+      shuffle_points_wline(mutated_genome,index)
+   elif seed == 4:
+      move_point_wline(mutated_genome,index)
+   elif seed == 5:
+      shift_point_wline(mutated_genome,index)
+   elif seed == 6:
+      increment_point_wline(mutated_genome,index)
+   else: #seed == 7:
+      decrement_point_wline(mutated_genome,index)
+
+def mutate_point_trig(mutated_genome):
+   """
+   Point Mutation
+   These actions affect the size, shape,
+    and location of the chromosomes' phenotype.
+   The phenotype is triangle
+   """
+   seed = random.randint(0,1)
+   index = random.randint(0,max(0,len(mutated_genome)-1))
+   if seed == 0:
+      move_point_trig(mutated_genome,index)
+   else: #seed == 1:
+      shift_point_trig(mutated_genome,index)
+
+def mutate_point_circ(mutated_genome):
+   """
+   Point Mutation
+   These actions affect the size, shape,
+    and location of the chromosomes' phenotype.
+   The phenotype is circle
+   """
+   seed = random.randint(0,3)
+   index = random.randint(0,max(0,len(mutated_genome)-1))
+   if seed == 0:
+      move_point_circ(mutated_genome,index)
+   elif seed == 1:
+      shift_point_circ(mutated_genome,index)
+   elif seed == 2:
+      move_radius_circ(mutated_genome,index)
+   else: #seed == 3:
+      shift_radius_circ(mutated_genome,index)
+
+def mutate_point_rect(mutated_genome):
+   """
+   Point Mutation
+   These actions affect the size, shape,
+    and location of the chromosomes' phenotype.
+   The phenotype is triangle
+   """
+   seed = random.randint(0,1)
+   index = random.randint(0,max(0,len(mutated_genome)-1))
+   if seed == 0:
+      move_point_rect(mutated_genome,index)
+   else: #seed == 1:
+      shift_point_rect(mutated_genome,index)
 
 def insert_point(mutated_genome,index):
    """
@@ -235,6 +361,67 @@ def move_point(mutated_genome,index):
    point_index = random.randint(0,max(0,len(mutated_genome[index][2])-1))
    mutated_genome[index][2][point_index] = point
 
+def move_point_circ(mutated_genome,index):
+   """
+   Move Point
+   Chooses a point at random and moves it to a randomly chosen location.
+    This can be anywhere on the image (or even slightly off of it).
+   """
+   Xval = random.randint(-int(imagewidth/5.),int(imagewidth*6./5.))
+   Yval = random.randint(-int(imageheight/5.),int(imageheight*6./5.))
+   circle = mutated_genome[index][2]
+   newcircle = (Xval,Yval,circle[2])
+   mutated_genome[index][2] = newcircle
+
+def move_radius_circ(mutated_genome,index):
+   """
+   Move Point
+   Chooses a point at random and moves it to a randomly chosen location.
+    This can be anywhere on the image (or even slightly off of it).
+   """
+   radius = random.randint(0,max(int(imagewidth*6./5.),int(imageheight*6./5.)))
+   circle = mutated_genome[index][2]
+   newcircle = (circle[0],circle[1],radius)
+   mutated_genome[index][2] = newcircle
+
+def move_point_trig(mutated_genome,index):
+   """
+   Move Point
+   Chooses a point at random and moves it to a randomly chosen location.
+    This can be anywhere on the image (or even slightly off of it).
+   """
+   Xval = random.randint(-int(imagewidth/5.),int(imagewidth*6./5.))
+   Yval = random.randint(-int(imageheight/5.),int(imageheight*6./5.))
+   point = (Xval,Yval)
+   old_points = list(mutated_genome[index][2])
+   old_points[random.randint(0,2)] = point
+   mutated_genome[index][2] = tuple(old_points)
+
+def move_point_rect(mutated_genome,index):
+   """
+   Move Point
+   Chooses a point at random and moves it to a randomly chosen location.
+    This can be anywhere on the image (or even slightly off of it).
+   """
+   Xval = random.randint(-int(imagewidth/5.),int(imagewidth*6./5.))
+   Yval = random.randint(-int(imageheight/5.),int(imageheight*6./5.))
+   point = (Xval,Yval)
+   old_points = list(mutated_genome[index][2])
+   old_points[random.randint(0,1)] = point
+   mutated_genome[index][2] = tuple(old_points)
+
+def move_point_wline(mutated_genome,index):
+   """
+   Move Point
+   Chooses a point at random and moves it to a randomly chosen location.
+    This can be anywhere on the image (or even slightly off of it).
+   """
+   Xval = random.randint(-int(imagewidth/5.),int(imagewidth*6./5.))
+   Yval = random.randint(-int(imageheight/5.),int(imageheight*6./5.))
+   point = (Xval,Yval)
+   point_index = random.randint(1,max(1,len(mutated_genome[index][2])-1))
+   mutated_genome[index][2][point_index] = point
+
 def shift_point(mutated_genome,index):
    """
    Shift Point
@@ -245,6 +432,80 @@ def shift_point(mutated_genome,index):
    Xval = random.randint(-int(imagewidth*0.1),int(imagewidth*0.1))
    Yval = random.randint(-int(imageheight*0.1),int(imageheight*0.1))
    point_index = random.randint(0,max(0,len(mutated_genome[index][2])-1))
+   point = mutated_genome[index][2][point_index]
+   newpoint = (point[0]+Xval,point[1]+Yval)
+   mutated_genome[index][2][point_index] = newpoint
+
+def shift_point_circ(mutated_genome,index):
+   """
+   Shift Point
+   Chooses a point at random and moves it by a randomly selected amount.
+   This amount is in general smaller than the image to make this
+    a much more gradual move than Move Point.
+   """
+   Xval = random.randint(-int(imagewidth*0.1),int(imagewidth*0.1))
+   Yval = random.randint(-int(imageheight*0.1),int(imageheight*0.1))
+   circle = mutated_genome[index][2]
+   newcircle = (circle[0]+Xval,circle[1]+Yval,circle[2])
+   mutated_genome[index][2] = newcircle
+
+def shift_radius_circ(mutated_genome,index):
+   """
+   Shift Point
+   Chooses a point at random and moves it by a randomly selected amount.
+   This amount is in general smaller than the image to make this
+    a much more gradual move than Move Point.
+   """
+   limit = int(max(imagewidth,imagewidth)*0.1)
+   radius = random.randint(-limit,limit)
+   circle = mutated_genome[index][2]
+   newcircle = (circle[0],circle[1],circle[2]+radius)
+   mutated_genome[index][2] = newcircle
+
+def shift_point_trig(mutated_genome,index):
+   """
+   Shift Point
+   Chooses a point at random and moves it by a randomly selected amount.
+   This amount is in general smaller than the image to make this
+    a much more gradual move than Move Point.
+   """
+   Xval = random.randint(-int(imagewidth*0.1),int(imagewidth*0.1))
+   Yval = random.randint(-int(imageheight*0.1),int(imageheight*0.1))
+   triangle = mutated_genome[index][2]
+   seed = random.randint(0,2)
+   oldpoint = triangle[seed]
+   newpoint = (oldpoint+Xval, newpoint+Yval)
+   newtriangle = list(triangle)
+   newtriangle[seed] = newpoint
+   mutated_genome[index][2] = tuple(newtriangle)
+
+def shift_point_rect(mutated_genome,index):
+   """
+   Shift Point
+   Chooses a point at random and moves it by a randomly selected amount.
+   This amount is in general smaller than the image to make this
+    a much more gradual move than Move Point.
+   """
+   Xval = random.randint(-int(imagewidth*0.1),int(imagewidth*0.1))
+   Yval = random.randint(-int(imageheight*0.1),int(imageheight*0.1))
+   rectangle = mutated_genome[index][2]
+   seed = random.randint(0,1)
+   oldpoint = rectangle[seed]
+   newpoint = (oldpoint+Xval, newpoint+Yval)
+   newrectangle = list(rectangle)
+   newrectangle[seed] = newpoint
+   mutated_genome[index][2] = tuple(newrectangle)
+
+def shift_point_wline(mutated_genome,index):
+   """
+   Shift Point
+   Chooses a point at random and moves it by a randomly selected amount.
+   This amount is in general smaller than the image to make this
+    a much more gradual move than Move Point.
+   """
+   Xval = random.randint(-int(imagewidth*0.1),int(imagewidth*0.1))
+   Yval = random.randint(-int(imageheight*0.1),int(imageheight*0.1))
+   point_index = random.randint(1,max(1,len(mutated_genome[index][2])-1))
    point = mutated_genome[index][2][point_index]
    newpoint = (point[0]+Xval,point[1]+Yval)
    mutated_genome[index][2][point_index] = newpoint
