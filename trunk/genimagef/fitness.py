@@ -40,6 +40,7 @@ def draw_genome(genome):
          ellipse_mask = Image.new('L',(imagewidth,imageheight), 0)
          ImageDraw.Draw(ellipse_mask).ellipse(points, fill=opacity)
          genome_image = Image.composite(color_mask,genome_image,ellipse_mask)
+      return genome_image
    elif phenotype == "Rect":
       # Draw rectangles from ((x,y),(x,y))
       for rectangle in genome:
@@ -48,6 +49,32 @@ def draw_genome(genome):
          rectangle_mask = Image.new('L',(imagewidth,imageheight), 0)
          ImageDraw.Draw(rectangle_mask).rectangle(points, fill=opacity)
          genome_image = Image.composite(color_mask,genome_image,rectangle_mask)
+      return genome_image
+   elif phenotype == "Line":
+      # Draw lines from a list of points
+      for line in genome:
+         color, opacity, points = line
+         color_mask = Image.new(color_mode,(imagewidth,imageheight), color)
+         line_mask = Image.new('L',(imagewidth,imageheight), 0)
+         if len(points) >= 2:
+            ImageDraw.Draw(line_mask).line(points, fill=opacity)
+         else: #len(points) == 1:
+            ImageDraw.Draw(line_mask).point(points, fill=opacity)
+         genome_image = Image.composite(color_mask,genome_image,line_mask)
+      return genome_image
+   elif phenotype == "WLine":
+      # Draw lines from a list of points with a width
+      for line in genome:
+         color, opacity, points = line
+         width = points.pop(0)
+         color_mask = Image.new(color_mode,(imagewidth,imageheight), color)
+         line_mask = Image.new('L',(imagewidth,imageheight), 0)
+         if len(points) >= 2:
+            ImageDraw.Draw(line_mask).line(points, fill=opacity, width=width)
+         else: #len(points) == 1:
+            ImageDraw.Draw(line_mask).point(points, fill=opacity)
+         genome_image = Image.composite(color_mask,genome_image,line_mask)
+      return genome_image
 
 def image_difference(genome_image):
    """
