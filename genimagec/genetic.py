@@ -46,7 +46,7 @@ try:
 		if (counter % 50 == 0):
 			print counter
 		canon.gene_transfer(mutant)
-#		Chromosome.set_range(max(100, percent_diff))
+		Chromosome.set_range(min(100, percent_diff))
 		mutant.mutate(mutation_rate)
 		mdifference = mutant.diff(base)
 		if mdifference <= difference:

@@ -89,7 +89,7 @@ class Genome():
 			self.chromosomes[second] = to_swap
    
 	def delete_chromosome(self):
-		if len(self.chromosomes) > 0:
+		if len(self.chromosomes) > 1:
 			del self.chromosomes[random.randint(0,len(self.chromosomes)-1)]
    	
 	def add_chromosome(self):
