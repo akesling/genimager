@@ -14,6 +14,7 @@ class Chromosome():
 	#Adjustment settings
 	color_adjust = 20
 	alpha_adjust = 20
+	distance_adjust = 20
 	
 	def __init__(self, blank=False):
 		self.outline = []
@@ -51,7 +52,6 @@ class Chromosome():
 	@classmethod
 	def set_range(self, range):
 		self.RANGE = range/100.
-		print self.RANGE
 	
 	def from_string(self, serial):
 		self.outline = []
@@ -74,44 +74,36 @@ class Chromosome():
 
 ##Shape alterations##
 	def insert_point(self, center=False):
-#		if center:
-#			assert type(center) == tuple and len(center) == 2
-#			XMAX = center[0] + abs(int(self.RANGE * (self.XMAX - center[0])))
-#			XMIN = center[0] - abs(int(self.RANGE * (self.XMIN + center[0])))
-#			YMAX = center[1] + abs(int(self.RANGE * (self.YMAX - center[1])))
-#			YMIN = center[1] - abs(int(self.RANGE * (self.YMIN + center[1])))
-#		else:
-#			XMAX = self.XMAX
-#			XMIN = self.XMIN	
-#			YMAX = self.YMAX
-#			YMIN = self.YMIN	
+		if center:
+			assert type(center) == tuple and len(center) == 2
+			XMAX = center[0] + abs(int(self.RANGE * (self.XMAX - center[0])))
+			XMIN = center[0] - abs(int(self.RANGE * (self.XMIN + center[0])))
+			YMAX = center[1] + abs(int(self.RANGE * (self.YMAX - center[1])))
+			YMIN = center[1] - abs(int(self.RANGE * (self.YMIN + center[1])))
+		else:
+			XMAX = self.XMAX
+			XMIN = self.XMIN	
+			YMAX = self.YMAX
+			YMIN = self.YMIN	
 		
-		XMAX = self.XMAX
-		XMIN = self.XMIN	
-		YMAX = self.YMAX
-		YMIN = self.YMIN	
 		if len(self.outline) < self.PMAX:
 			self.outline.insert(random.randint(0, len(self.outline)), 
 				(random.randint(XMIN, XMAX),
 					 random.randint(YMIN, YMAX)))
 	
 	def add_point(self, center=False):
-#		if center:
-#			assert type(center) == tuple and len(center) == 2
-#			XMAX = center[0] + abs(int(self.RANGE * (self.XMAX - center[0])))
-#			XMIN = center[0] - abs(int(self.RANGE * (self.XMIN + center[0])))
-#			YMAX = center[1] + abs(int(self.RANGE * (self.YMAX - center[1])))
-#			YMIN = center[1] - abs(int(self.RANGE * (self.YMIN + center[1])))
-#		else:
-#			XMAX = self.XMAX
-#			XMIN = self.XMIN	
-#			YMAX = self.YMAX
-#			YMIN = self.YMIN	
+		if center:
+			assert type(center) == tuple and len(center) == 2
+			XMAX = center[0] + abs(int(self.RANGE * (self.XMAX - center[0])))
+			XMIN = center[0] - abs(int(self.RANGE * (self.XMIN + center[0])))
+			YMAX = center[1] + abs(int(self.RANGE * (self.YMAX - center[1])))
+			YMIN = center[1] - abs(int(self.RANGE * (self.YMIN + center[1])))
+		else:
+			XMAX = self.XMAX
+			XMIN = self.XMIN	
+			YMAX = self.YMAX
+			YMIN = self.YMIN	
 		
-		XMAX = self.XMAX
-		XMIN = self.XMIN	
-		YMAX = self.YMAX
-		YMIN = self.YMIN	
 		if len(self.outline) < self.PMAX:
 			self.outline.append((random.randint(XMIN, XMAX),
 				random.randint(YMIN, YMAX)))
@@ -121,9 +113,8 @@ class Chromosome():
 			self.outline.remove(random.choice(self.outline))
 	
 	def adjust_point(self):
-		distance_adjust = 20
-		x_adjust = random.randint(-distance_adjust,distance_adjust)
-		y_adjust = random.randint(-distance_adjust,distance_adjust)
+		x_adjust = random.randint(-self.distance_adjust,self.distance_adjust)
+		y_adjust = random.randint(-self.distance_adjust,self.distance_adjust)
 		
 		point_index = random.randint(0, len(self.outline)-1)
 		
@@ -147,5 +138,3 @@ class Chromosome():
 	def adjust_opacity(self):
 		alpha_adjust = random.randint(-self.alpha_adjust,self.alpha_adjust)
 		self.fill_a = max(0, min(255, self.fill_a + alpha_adjust))
-	
-	
