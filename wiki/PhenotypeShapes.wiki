@@ -61,6 +61,16 @@ These are rotated rectangles, they are like rectangles exept there is an added a
 
 `RectR: (theta,(x,y),(x,y))`
 
+== Lines ==
+These are just line segments given by a list of points. They are similar to polygons, excepting two differences: it does not fill in the interior and it does not connect the last point to the first point.  If the line only has one point, it is drawn as a point.
+
+`Line: [(x,y),...]`
+
+== Wide Line ==
+These are the same as the line, except now the lines can be wider than one pixel.  It is a list with the width (in pixels) first followed by all of its points.
+
+`WLine: [width,(x,y),...]
+
 == Text ==
 This draws text.  Should probably be combined with heavy upsampling (the genetic image is many times larger than the base image) so that the text is recognizeable.
 
