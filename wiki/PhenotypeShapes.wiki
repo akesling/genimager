@@ -67,9 +67,9 @@ These are just line segments given by a list of points. They are similar to poly
 `Line: [(x,y),...]`
 
 == Wide Line ==
-These are the same as the line, except now the lines can be wider than one pixel.  It is a list with the width (in pixels) first followed by all of its points.
+These are the same as the line, except now the lines can be wider than one pixel.  It is a list with the width (in pixels) first followed by all of its points. Note: while the lines are drawn width pixels wide, points are still only drawn as one pixel.
 
-`WLine: [width,(x,y),...]
+`WLine: [width,(x,y),...]`
 
 == Text ==
 This draws text.  Should probably be combined with heavy upsampling (the genetic image is many times larger than the base image) so that the text is recognizeable.
