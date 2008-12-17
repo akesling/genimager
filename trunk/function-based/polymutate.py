@@ -21,6 +21,9 @@ global chromosome_range, point_range, color_range, opacity_range
 # Chromosome Ranges
 global insert_chromosome_range, remove_chromosome_range, switch_chromosomes_range
 global shuffle_chromosomes_range, increment_chromosome_range, decrement_chromosome_range
+# Point Ranges
+global insert_point_range, remove_point_range, switch_points_range, shuffle_points_range
+global move_point_range, shift_point_range, increment_point_range, decrement_point_range
 
 ## Mutate ##
 def mutate(genome):
@@ -54,6 +57,7 @@ def mutate(genome):
       mutate_opacity(mutated_genome)
    return mutated_genome
 
+## Mutate Chromosome ##
 def mutate_chromosome(mutated_genome):
    """
    Chomosome Mutations
@@ -82,6 +86,7 @@ def mutate_chromosome(mutated_genome):
    else: #seed < range:
       decrement_chromosome(mutated_genome)
 
+## Insert Chromosome ##
 def insert_chromosome(mutated_genome):
    """
    Insert Chromosome
@@ -100,6 +105,7 @@ def insert_chromosome(mutated_genome):
    points = []
    mutated_genome.insert(index, [color,opacity,points])
 
+## Remove Chromosome ##
 def remove_chromosome(mutated_genome):
    """
    Remove Chromosome
@@ -108,6 +114,7 @@ def remove_chromosome(mutated_genome):
    index = random.randint(0,max(0,len(mutated_genome)-1))
    del mutated_genome[index]
 
+## Switch Chromosomes ##
 def switch_chromosomes(mutated_genome):
    """
    Switch Chromosomes
@@ -119,6 +126,7 @@ def switch_chromosomes(mutated_genome):
    mutated_genome[index1] = mutated_genome[index2]
    mutated_genome[index2] = temp
 
+## Shuffle Chromosomes ##
 def shuffle_chromosomes(mutated_genome):
    """
    Shuffle Chromosomes
@@ -126,6 +134,7 @@ def shuffle_chromosomes(mutated_genome):
    """
    random.shuffle(mutated_genome)
 
+## Increment Chromosome ##
 def increment_chromosome(mutated_genome):
    """
    Increment Chromosome
@@ -147,6 +156,7 @@ def increment_chromosome(mutated_genome):
    mutated_genome[index1] = mutated_genome[index2]
    mutated_genome[index2] = temp
 
+## Decrement Chromosome ##
 def decrement_chromosome(mutated_genome):
    """
    Decrement Chromosome
@@ -168,6 +178,7 @@ def decrement_chromosome(mutated_genome):
    mutated_genome[index1] = mutated_genome[index2]
    mutated_genome[index2] = temp
 
+## Mutate Point ##
 def mutate_point(mutated_genome):
    """
    Point Mutation
@@ -175,24 +186,31 @@ def mutate_point(mutated_genome):
     and location of the chromosomes' phenotype.
    The phenotype is polygons
    """
-   seed = random.randint(0,7)
+   remove_point_range_sum = insert_point_range + remove_point_range
+   switch_points_range_sum = switch_points_range + remove_point_range_sum
+   shuffle_points_range_sum = shuffle_points_range + switch_points_range_sum
+   move_point_range_sum = move_point_range + shuffle_points_range_sum
+   shift_point_range_sum = shift_point_range + move_point_range_sum
+   increment_point_range_sum = increment_point_range + shift_point_range_sum
+   range = decrement_point_range + increment_point_range_sum
+   seed = random.uniform(0,range)
    index = random.randint(0,max(0,len(mutated_genome)-1))
    if len(mutated_genome[index][2]) < 3: seed = 0
-   if seed == 0:
+   if seed < insert_point_range:
       insert_point(mutated_genome,index)
-   elif seed == 1:
+   elif seed < remove_point_range_sum:
       remove_point(mutated_genome,index)
-   elif seed == 2:
+   elif seed < switch_points_range_sum:
       switch_points(mutated_genome,index)
-   elif seed == 3:
+   elif seed < shuffle_points_range_sum:
       shuffle_points(mutated_genome,index)
-   elif seed == 4:
+   elif seed < move_point_range_sum:
       move_point(mutated_genome,index)
-   elif seed == 5:
+   elif seed < shift_point_range_sum:
       shift_point(mutated_genome,index)
-   elif seed == 6:
+   elif seed < increment_point_range_sum:
       increment_point(mutated_genome,index)
-   else: #seed == 7:
+   else: #seed < range:
       decrement_point(mutated_genome,index)
 
 
