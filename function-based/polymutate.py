@@ -13,9 +13,16 @@
 #  Special Case: If the genome has no chomosomes, 
 #   then it forces the mutation 'Insert Chomosome'.
 import copy
-from genetic_imager import random
+from poly_imager import random
 global imagewidth, imageheight, color_mode
+## Probability Ranges ##
+# Mutate (Main) Ranges
+global chromosome_range, point_range, color_range, opacity_range
+# Chromosome Ranges
+global insert_chromosome_range, remove_chromosome_range, switch_chromosomes_range
+global shuffle_chromosomes_range, increment_chromosome_range, decrement_chromosome_range
 
+## Mutate ##
 def mutate(genome):
    """
    Mutate Function
@@ -32,15 +39,18 @@ def mutate(genome):
     then it forces the mutation 'Insert Chomosome'.
    """
    mutated_genome = copy.deepcopy(genome) # make a copy of the DNA to mutate
-   seed = random.randint(0,3)
+   point_range_sum = point_range + chromosome_range
+   color_range_sum = color_range + point_range_sum
+   range = opacity_range + color_range_sum
+   seed = random.uniform(0,range)
    if len(mutated_genome) == 0: seed = 0
-   if seed == 0:
+   if seed < chromosome_range:
       mutate_chromosome(mutated_genome)
-   elif seed == 1:
+   elif seed < point_range_sum:
       mutate_point(mutated_genome)
-   elif seed == 2:
+   elif seed < color_range_sum:
       mutate_color(mutated_genome)
-   else: #seed ==3:
+   else: #seed < range:
       mutate_opacity(mutated_genome)
    return mutated_genome
 
@@ -52,19 +62,24 @@ def mutate_chromosome(mutated_genome):
     it will not 'insert chromosome'.
    This is effectively the maximum number of chromosomes.
    """
-   seed = random.randint(0,5)
+   remove_chromosome_range_sum = insert_chromosome_range + remove_chromosome_range
+   switch_chromosomes_range_sum = switch_chromosomes_range + remove_chromosome_range_sum
+   shuffle_chromosomes_range_sum = shuffle_chromosomes_range + switch_chromosomes_range_sum
+   increment_chromosome_range_sum = increment_chromosome_range + shuffle_chromosomes_range_sum
+   range = decrement_chromosome_range + increment_chromosome_range_sum
+   seed = random.uniform(0,range)
    if len(mutated_genome) <= 1: seed = 0
-   if seed == 0:
+   if seed < insert_chromosome_range:
       insert_chromosome(mutated_genome)
-   elif seed == 1:
+   elif seed < remove_chromosome_range_sum:
       remove_chromosome(mutated_genome)
-   elif seed == 2:
+   elif seed < switch_chromosomes_range_sum:
       switch_chromosomes(mutated_genome)
-   elif seed == 3:
+   elif seed < shuffle_chromosomes_range_sum:
       shuffle_chromosomes(mutated_genome)
-   elif seed == 4:
+   elif seed < increment_chromosome_range_sum:
       increment_chromosome(mutated_genome)
-   else: #seed == 5:
+   else: #seed < range:
       decrement_chromosome(mutated_genome)
 
 def insert_chromosome(mutated_genome):

@@ -39,7 +39,7 @@ def genimage(image_path, archive_dir='.', max_generations=None, \
    genome = []	# the genome - this is what mutates
    base_image = Image.open(image_path).convert(color_mode)
    imagewidth, imageheight = base_image.size
-   import mutate, fitness
+   import polymutate as mutate, polyfitness as fitness
    # Set the globals
    mutate.imagewidth = imagewidth
    fitness.imagewidth = imagewidth
