@@ -15,15 +15,42 @@
 import copy
 from poly_imager import random
 global imagewidth, imageheight, color_mode
+
 ## Probability Ranges ##
 # Mutate (Main) Ranges
-global chromosome_range, point_range, color_range, opacity_range
+chromosome_range	= 1
+point_range		= 1
+color_range		= 1
+opacity_range		= 1
 # Chromosome Ranges
-global insert_chromosome_range, remove_chromosome_range, switch_chromosomes_range
-global shuffle_chromosomes_range, increment_chromosome_range, decrement_chromosome_range
+insert_chromosome_range		= 1
+remove_chromosome_range		= 1
+switch_chromosomes_range	= 1
+shuffle_chromosomes_range	= 1
+increment_chromosome_range	= 1
+decrement_chromosome_range	= 1
 # Point Ranges
-global insert_point_range, remove_point_range, switch_points_range, shuffle_points_range
-global move_point_range, shift_point_range, increment_point_range, decrement_point_range
+insert_point_range	= 1
+remove_point_range	= 1
+switch_points_range	= 1
+shuffle_points_range	= 1
+move_point_range	= 1
+shift_point_range	= 1
+increment_point_range	= 1
+decrement_point_range	= 1
+# Color Ranges
+new_color_range		= 1
+change_color_range	= 1
+switch_colors_range	= 1
+# Opacity Ranges
+new_opacity_range	= 1
+change_opacity_range	= 1
+switch_opacity_range	= 1
+
+## Probability Sigma Values ##
+change_color_sigma	= 1
+change_opacity_sigma	= 1
+shift_point_sigma	= 1
 
 ## Mutate ##
 def mutate(genome):
@@ -41,7 +68,9 @@ def mutate(genome):
    Special Case: If the genome has no chomosomes,
     then it forces the mutation 'Insert Chomosome'.
    """
-   mutated_genome = copy.deepcopy(genome) # make a copy of the DNA to mutate
+   # make a copy of the genome, which will then be mutated in place
+   mutated_genome = copy.deepcopy(genome)
+   global point_range, chromosome_range, color_range, opacity_range
    point_range_sum = point_range + chromosome_range
    color_range_sum = color_range + point_range_sum
    range = opacity_range + color_range_sum
@@ -66,6 +95,8 @@ def mutate_chromosome(mutated_genome):
     it will not 'insert chromosome'.
    This is effectively the maximum number of chromosomes.
    """
+   global insert_chromosome_range, remove_chromosome_range, switch_chromosomes_range
+   global shuffle_chromosomes_range, increment_chromosome_range, decrement_chromosome_range
    remove_chromosome_range_sum = insert_chromosome_range + remove_chromosome_range
    switch_chromosomes_range_sum = switch_chromosomes_range + remove_chromosome_range_sum
    shuffle_chromosomes_range_sum = shuffle_chromosomes_range + switch_chromosomes_range_sum
@@ -186,6 +217,9 @@ def mutate_point(mutated_genome):
     and location of the chromosomes' phenotype.
    The phenotype is polygons
    """
+   global insert_point_range, remove_point_range, switch_points_range
+   global shuffle_points_range, move_point_range, shift_point_range
+   global increment_point_range, decrement_point_range
    remove_point_range_sum = insert_point_range + remove_point_range
    switch_points_range_sum = switch_points_range + remove_point_range_sum
    shuffle_points_range_sum = shuffle_points_range + switch_points_range_sum
@@ -213,7 +247,7 @@ def mutate_point(mutated_genome):
    else: #seed < range:
       decrement_point(mutated_genome,index)
 
-
+## Insert Point ##
 def insert_point(mutated_genome,index):
    """
    Insert Point
@@ -226,6 +260,7 @@ def insert_point(mutated_genome,index):
    point_index = random.randint(0,max(0,len(mutated_genome[index][2])))
    mutated_genome[index][2].insert(point_index, point)
 
+## Remove Point ##
 def remove_point(mutated_genome,index):
    """
    Remove Point
@@ -235,6 +270,7 @@ def remove_point(mutated_genome,index):
    point_index = random.randint(0,max(0,len(mutated_genome[index][2])-1))
    del mutated_genome[index][2][point_index]
 
+## Switch Points ##
 def switch_points(mutated_genome,index):
    """
    Switch Points
@@ -246,6 +282,7 @@ def switch_points(mutated_genome,index):
    mutated_genome[index][2][point_index1] = mutated_genome[index][2][point_index2]
    mutated_genome[index][2][point_index2] = temp
 
+## Shuffle Points ##
 def shuffle_points(mutated_genome,index):
    """
    Shuffle Points
@@ -253,6 +290,7 @@ def shuffle_points(mutated_genome,index):
    """
    random.shuffle(mutated_genome[index][2])
 
+## Move Point ##
 def move_point(mutated_genome,index):
    """
    Move Point
@@ -265,6 +303,7 @@ def move_point(mutated_genome,index):
    point_index = random.randint(0,max(0,len(mutated_genome[index][2])-1))
    mutated_genome[index][2][point_index] = point
 
+## Shift Point ##
 def shift_point(mutated_genome,index):
    """
    Shift Point
@@ -272,13 +311,17 @@ def shift_point(mutated_genome,index):
    This amount is in general smaller than the image to make this
     a much more gradual move than Move Point.
    """
-   Xval = random.randint(-int(imagewidth*0.1),int(imagewidth*0.1))
-   Yval = random.randint(-int(imageheight*0.1),int(imageheight*0.1))
+   global shift_point_sigma
+   radius = random.gauss(0,shift_point_sigma*max(imageheight,imagewidth))
+   angle = random.uniform(0,math.pi)
+   Xval = radius*math.cos(angle)
+   Yval = radius*math.sin(angle)
    point_index = random.randint(0,max(0,len(mutated_genome[index][2])-1))
    point = mutated_genome[index][2][point_index]
    newpoint = (point[0]+Xval,point[1]+Yval)
    mutated_genome[index][2][point_index] = newpoint
 
+## Increment Point ##
 def increment_point(mutated_genome,index):
    """
    Increment Point
@@ -296,6 +339,7 @@ def increment_point(mutated_genome,index):
    mutated_genome[index][2][point_index1] = mutated_genome[index][2][point_index2]
    mutated_genome[index][2][point_index2] = temp
 
+## Decrement Point ##
 def decrement_point(mutated_genome,index):
    """
    Decrement point
@@ -313,21 +357,25 @@ def decrement_point(mutated_genome,index):
    mutated_genome[index][2][point_index1] = mutated_genome[index][2][point_index2]
    mutated_genome[index][2][point_index2] = temp
 
+## Mutate Color ##
 def mutate_color(mutated_genome):
    """
    Color Mutations
    These actions only affect the color of the chromosomes.
    """
-   seed = random.randint(0,2)
-   if seed == 0:
+   change_color_range_sum = new_color_range + change_color_range
+   range = switch_color_range + change_color_range_sum
+   seed = random.uniform(0,range)
+   if seed < new_color_range:
       new_color(mutated_genome)
-   elif seed == 1:
+   elif seed < change_color_range_sum:
       change_color(mutated_genome)
-   else: #seed == 2:
+   else: #seed < range:
       switch_colors(mutated_genome)
-   #else: seed == 3: # depricated
+   #else:  # depricated
    #   shuffle_colors(mutated_genome)
 
+## New Color ##
 def new_color(mutated_genome):
    """
    New Color
@@ -344,6 +392,7 @@ def new_color(mutated_genome):
       color = random.randint(0,255)
    mutated_genome[index][0] = color
 
+## Change Color ##
 def change_color(mutated_genome):
    """
    Change Color
@@ -354,17 +403,18 @@ def change_color(mutated_genome):
    """
    index = random.randint(0,max(0,len(mutated_genome)-1))
    if color_mode == 'RGB':
-      color_red = random.randint(-25,25)
-      color_green = random.randint(-25,25)
-      color_blue = random.randint(-25,25)
+      color_red = random.gauss(0, change_color_sigma)
+      color_green = random.gauss(0, change_color_sigma)
+      color_blue = random.randint(0, change_color_sigma)
       color = mutated_genome[index][0]
-      newcolor = (color[0]+color_red,color[1]+color_green,color[2]+color_blue)
+      newcolor = (color[0] + color_red, color[1] + color_green, color[2] + color_blue)
    else: #color_mode == 'L':
-      color_diff = random.randint(-25,25)
+      color_diff = random.randint(0, change_color_sigma)
       color = mutated_genome[index][0]
-      newcolor = color+color_diff
+      newcolor = color + color_diff
    mutated_genome[index][0] = newcolor
 
+## Switch Colors ##
 def switch_colors(mutated_genome):
    """
    Switch Colors
@@ -376,9 +426,10 @@ def switch_colors(mutated_genome):
    mutated_genome[index1][0] = mutated_genome[index2][0]
    mutated_genome[index2][0] = temp
 
+## Shuffle Colors - Depricated ##
 def shuffle_colors(mutated_genome):
    """
-   Shuffle Colors
+   Shuffle Colors - DEPRICATED
    This takes the colors over every chromosome and 
     randomly shuffles all of them.
    Each chromosome gets a color that a chromosome had before
@@ -386,21 +437,25 @@ def shuffle_colors(mutated_genome):
    """
    mutated_genome
 
+## Mutate Opacity ##
 def mutate_opacity(mutated_genome):
    """
    Opacity Actions
    These actions only affect the opacity of the chromosomes.
    """
-   seed = random.randint(0,2)
-   if seed == 0:
+   change_opacity_range_sum = new_opacity_range + change_opacity_range
+   range = switch_opacities_range + change_opacity_range_sum
+   seed = random.uniform(0,range)
+   if seed < new_opacity_range:
       new_opacity(mutated_genome)
-   elif seed == 1:
+   elif seed < change_opacity_range_sum:
       change_opacity(mutated_genome)
-   else: #seed == 2:
+   else: #seed < range:
       switch_opacities(mutated_genome)
-   #else: #seed == 3: # depricated
+   #else: # depricated
    #   shuffle_opacities(mutated_genome)
 
+## New Opacity ##
 def new_opacity(mutated_genome):
    """
    New Opacity
@@ -411,6 +466,7 @@ def new_opacity(mutated_genome):
    opacity = random.randint(0,255)
    mutated_genome[index][1] = opacity
 
+## Change Opacity ##
 def change_opacity(mutated_genome):
    """
    Change Opacity
@@ -420,9 +476,10 @@ def change_opacity(mutated_genome):
     (as opposed to 'New Opacity').
    """
    index = random.randint(0,max(0,len(mutated_genome)-1))
-   opacity = random.randint(-25,25)
+   opacity = random.gauss(0,change_opacity_sigma)
    mutated_genome[index][1] = opacity + mutated_genome[index][1]
 
+## Switch Opacities ##
 def switch_opacities(mutated_genome):
    """
    Switch Opacities
@@ -434,9 +491,10 @@ def switch_opacities(mutated_genome):
    mutated_genome[index1][1] = mutated_genome[index2][1]
    mutated_genome[index2][1] = temp
 
+## Shuffle Opacities - Depricated##
 def shuffle_opacities(mutated_genome):
    """
-   Shuffle Opacities
+   Shuffle Opacities - DEPRICATED
    This takes the opacity over every chromosome and 
     randomly shuffles all of them.
    Each chromosome gets an opacity that a chromosome had before 
