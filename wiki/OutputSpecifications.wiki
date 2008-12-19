@@ -5,157 +5,48 @@
 
 == Text-based Output ==
 Example Formatting for xml-based output:
+
+Note, the `<fill>` options are for color and black and white.  You only need to set the `<grayscale>` tag or the `<red>`, `<green>`, and `<blue>` tags, not both.
 {{{
-<genes>
-  <image>
-    <width>Width of Image</width>
-    <height>Height of Image</height>
-    <background_color>Background Color</background_color>
-    <color_mode>Color Mode</color_mode>
-  </image>
-  <genome gen="Your Generation Number Here">
-    <polygon>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<simulation xmlns="http://code.google.com/p/genimager/wiki/OutputSpecifications">
+
+<image>
+  <width>Width of Image</width>
+  <height>Height of Image</height>
+  <background_color>Background Color</background_color>
+  <color_mode>Color Mode</color_mode>
+</image>
+
+<genetic_history>
+  <genome generation="Your Generation Number Here">
+    <chromosome>
       <fill>
         <red>Red Value From 0 to 255</red>
         <green>Green Value From 0 to 255</red>
         <blue>Blue Value From 0 to 255</blue>
+        <grayscale>Gray Value from 0 to 255</grayscale>
         <opacity>Opacity Value From 0 to 255</opacity>
       </fill>
       <shape>
+         <phenotype>'polygon' or other shape<phenotype>
          <point>
            <x>X Position</x>
            <y>Y Position</y>
          </point>
-         <point>
-           <x>X Position</x>
-           <y>Y Position</y>
-         </point>
-         <point>
-           <x>X Position</x>
-           <y>Y Position</y>
-         </point>
+         ...
       </shape>
-    </polygon>
-    <polygon>
-      <fill>
-        <red>Red Value From 0 to 255</red>
-        <green>Green Value From 0 to 255</red>
-        <blue>Blue Value From 0 to 255</blue>
-        <opacity>Opacity Value From 0 to 255</opacity>
-      </fill>
-      <shape>
-         <point>
-           <x>X Position</x>
-           <y>Y Position</y>
-         </point>
-         <point>
-           <x>X Position</x>
-           <y>Y Position</y>
-         </point>
-         <point>
-           <x>X Position</x>
-           <y>Y Position</y>
-         </point>
-      </shape>
-    </polygon>
-    <polygon>
-      <fill>
-        <red>Red Value From 0 to 255</red>
-        <green>Green Value From 0 to 255</red>
-        <blue>Blue Value From 0 to 255</blue>
-        <opacity>Opacity Value From 0 to 255</opacity>
-      </fill>
-      <shape>
-         <point>
-           <x>X Position</x>
-           <y>Y Position</y>
-         </point>
-         <point>
-           <x>X Position</x>
-           <y>Y Position</y>
-         </point>
-         <point>
-           <x>X Position</x>
-           <y>Y Position</y>
-         </point>
-      </shape>
-    </polygon>
+    </chromosome>
+    ...
   </genome>
-  <genome gen="Your Generation Number Here">
-    <polygon>
-      <fill>
-        <red>Red Value From 0 to 255</red>
-        <green>Green Value From 0 to 255</red>
-        <blue>Blue Value From 0 to 255</blue>
-        <opacity>Opacity Value From 0 to 255</opacity>
-      </fill>
-      <shape>
-         <point>
-           <x>X Position</x>
-           <y>Y Position</y>
-         </point>
-         <point>
-           <x>X Position</x>
-           <y>Y Position</y>
-         </point>
-         <point>
-           <x>X Position</x>
-           <y>Y Position</y>
-         </point>
-      </shape>
-    </polygon>
-    <polygon>
-      <fill>
-        <red>Red Value From 0 to 255</red>
-        <green>Green Value From 0 to 255</red>
-        <blue>Blue Value From 0 to 255</blue>
-        <opacity>Opacity Value From 0 to 255</opacity>
-      </fill>
-      <shape>
-         <point>
-           <x>X Position</x>
-           <y>Y Position</y>
-         </point>
-         <point>
-           <x>X Position</x>
-           <y>Y Position</y>
-         </point>
-         <point>
-           <x>X Position</x>
-           <y>Y Position</y>
-         </point>
-      </shape>
-    </polygon>
-    <polygon>
-      <fill>
-        <red>Red Value From 0 to 255</red>
-        <green>Green Value From 0 to 255</red>
-        <blue>Blue Value From 0 to 255</blue>
-        <opacity>Opacity Value From 0 to 255</opacity>
-      </fill>
-      <shape>
-         <point>
-           <x>X Position</x>
-           <y>Y Position</y>
-         </point>
-         <point>
-           <x>X Position</x>
-           <y>Y Position</y>
-         </point>
-         <point>
-           <x>X Position</x>
-           <y>Y Position</y>
-         </point>
-      </shape>
-    </polygon>
-  </genome>
-</genes>
+  ...
+</genetic_history>
  
-<difference format="Your Format Here">
-  <comparison from="Generation Number" to="Generation Number">Difference Value</comparison>
-  <comparison from="Generation Number" to="Generation Number">Difference Value</comparison>
-  <comparison from="Generation Number" to="Generation Number">Difference Value</comparison>
-</difference>
+<mutation_history>
+
+</mutation_history>
+
+</simulation>
 }}}
 
 This example uses polygons as the entity that defines the image, but one could just as easily have {{{<line>}}}, {{{<rectangle>}}}, {{{<ellipse>}}}, or any other geometric shape (JUST KEEP THE NAMING CONVENTION STANDARD).  The contents of {{{<shape>}}} would have to be changed accordingly.
