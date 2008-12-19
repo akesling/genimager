@@ -70,7 +70,6 @@ def mutate(genome):
    """
    # make a copy of the genome, which will then be mutated in place
    mutated_genome = copy.deepcopy(genome)
-   global point_range, chromosome_range, color_range, opacity_range
    point_range_sum = point_range + chromosome_range
    color_range_sum = color_range + point_range_sum
    range = opacity_range + color_range_sum
@@ -95,8 +94,6 @@ def mutate_chromosome(mutated_genome):
     it will not 'insert chromosome'.
    This is effectively the maximum number of chromosomes.
    """
-   global insert_chromosome_range, remove_chromosome_range, switch_chromosomes_range
-   global shuffle_chromosomes_range, increment_chromosome_range, decrement_chromosome_range
    remove_chromosome_range_sum = insert_chromosome_range + remove_chromosome_range
    switch_chromosomes_range_sum = switch_chromosomes_range + remove_chromosome_range_sum
    shuffle_chromosomes_range_sum = shuffle_chromosomes_range + switch_chromosomes_range_sum
@@ -217,9 +214,6 @@ def mutate_point(mutated_genome):
     and location of the chromosomes' phenotype.
    The phenotype is polygons
    """
-   global insert_point_range, remove_point_range, switch_points_range
-   global shuffle_points_range, move_point_range, shift_point_range
-   global increment_point_range, decrement_point_range
    remove_point_range_sum = insert_point_range + remove_point_range
    switch_points_range_sum = switch_points_range + remove_point_range_sum
    shuffle_points_range_sum = shuffle_points_range + switch_points_range_sum
@@ -311,7 +305,6 @@ def shift_point(mutated_genome,index):
    This amount is in general smaller than the image to make this
     a much more gradual move than Move Point.
    """
-   global shift_point_sigma
    radius = random.gauss(0,shift_point_sigma*max(imageheight,imagewidth))
    angle = random.uniform(0,math.pi)
    Xval = radius*math.cos(angle)
