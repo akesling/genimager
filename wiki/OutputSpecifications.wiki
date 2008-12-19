@@ -29,7 +29,7 @@ Note, the `<fill>` options are for color and black and white.  You only need to 
         <opacity>Opacity Value From 0 to 255</opacity>
       </fill>
       <shape>
-         <phenotype>'polygon' or other shape<phenotype>
+         <phenotype>polygon<phenotype>
          <point>
            <x>X Position</x>
            <y>Y Position</y>
@@ -49,9 +49,10 @@ Note, the `<fill>` options are for color and black and white.  You only need to 
 </simulation>
 }}}
 
-This example uses polygons as the entity that defines the image, but one could just as easily have {{{<line>}}}, {{{<rectangle>}}}, {{{<ellipse>}}}, or any other geometric shape (JUST KEEP THE NAMING CONVENTION STANDARD).  The contents of {{{<shape>}}} would have to be changed accordingly.
+This example uses polygons as the entity that defines the image, but one could just as easily have `<line>`, `<rectangle>`, `<ellipse>`, or any other geometric shape (JUST KEEP THE NAMING CONVENTION STANDARD).  The contents of `<shape>` would have to be changed accordingly.
 
-Genome 
+For now, only `polygon` is supposed so nothing else needs to go in `<phenotype>` yet.
+
 = Difference Formats =
 == Difference Format ==
 Shows only the difference between successful generations.  Gives the "surviving species'" history of evolution.
