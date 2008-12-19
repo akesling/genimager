@@ -1,6 +1,7 @@
 import Image, ImageDraw, ImageChops, ImageStat
 import random, copy
 from chromosome import Chromosome
+
 class Genome():
 	XMAX = 0
 	YMAX = 0
@@ -98,17 +99,8 @@ class Genome():
 ##Fitness##
 	def draw(self): 
 		base_layer = Image.new('RGBA',(self.XMAX,self.YMAX))
-		color_layer = Image.new('RGBA',(self.XMAX, self.YMAX))
-		color_layer_draw = ImageDraw.Draw(color_layer)
 		for chromosome in self.chromosomes:
-			color, opacity, points = chromosome.fill_rgb, \
-									 chromosome.fill_a, \
-									 chromosome.outline
-			color_layer_draw.rectangle((0,0, self.XMAX,self.YMAX), color)
-			alpha_mask = Image.new('L',(self.XMAX,self.YMAX), 0)
-			alpha_mask_draw = ImageDraw.Draw(alpha_mask)
-			alpha_mask_draw.polygon(points,fill=opacity)
-			base_layer = Image.composite(color_layer,base_layer,alpha_mask)
+			chromosome.draw(base_layer)
 		self.last_draw = base_layer
 		
 		return base_layer

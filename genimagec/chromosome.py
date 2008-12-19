@@ -1,3 +1,4 @@
+import Image, ImageDraw
 import random
 class Chromosome():
 	XMAX = 0
@@ -51,7 +52,7 @@ class Chromosome():
 	
 	@classmethod
 	def set_range(self, range):
-		self.RANGE = range/100.
+		self.RANGE = range/200.
 	
 	def from_string(self, serial):
 		self.outline = []
@@ -69,6 +70,13 @@ class Chromosome():
 	
 	def mutate(self):
 		eval("self."+ random.choice(self.MUTATORS) +"()")
+	
+	def draw(self, base):
+		color_layer = Image.new('RGBA', base.size, self.fill_rgb)
+		alpha_mask = Image.new('L', base.size, 0)
+		alpha_mask_draw = ImageDraw.Draw(alpha_mask)
+		alpha_mask_draw.polygon(self.outline,fill=self.fill_a)
+		base_layer = Image.composite(color_layer, base_layer, alpha_mask)
 	
 ####Mutations####
 
