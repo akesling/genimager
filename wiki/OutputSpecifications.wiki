@@ -20,17 +20,17 @@ Note, the `<fill>` options are for color and black and white.  You only need to 
 
 <genetic_history>
   <genome generation="Your Generation Number Here">
-    <chromosome>
+    <chromosome index="This Chromosome's Index">
       <fill>
         <red>Red Value From 0 to 255</red>
-        <green>Green Value From 0 to 255</red>
+        <green>Green Value From 0 to 255</green>
         <blue>Blue Value From 0 to 255</blue>
         <grayscale>Gray Value from 0 to 255</grayscale>
         <opacity>Opacity Value From 0 to 255</opacity>
       </fill>
       <shape>
          <phenotype>polygon<phenotype>
-         <point>
+         <point index="This point's index">
            <x>X Position</x>
            <y>Y Position</y>
          </point>
@@ -43,7 +43,38 @@ Note, the `<fill>` options are for color and black and white.  You only need to 
 </genetic_history>
  
 <mutation_history>
-
+  <mutation generation="generation number">
+    <success>True or False</success>
+    <type>Mutation Type</type>
+    <!-- There is always 1 or 2 chromosome_index's -->
+    <chromosome_index>Index Number</chromosome_index>
+    <!-- There can be 0, 1 or 2 point_index's -->
+    <point_index>Index Number</point_index>
+    <!-- For anything else, tags are only included if that aspect it changed -->
+    <new_fill>
+      <new_red>Red Value From 0 to 255</new_red>
+      <new_green>Green Value From 0 to 255</new_green>
+      <new_blue>Blue Value From 0 to 255</new_blue>
+      <new_grayscale>Gray Value from 0 to 255</new_grayscale>
+      <new_opacity>Opacity Value From 0 to 255</new_opacity>
+    </new_fill>
+    <!-- If the fill was adjusted by difference, include that and not the new values -->
+    <fill_difference>
+      <fill_difference_sigma>sigma value</fill_difference_sigma>
+      <red_difference>red difference value</red_difference>
+      <green_difference>red difference value</green_difference>
+      <blue_difference>red difference value</blue_difference>
+      <grayscale_difference>red difference value</grayscale_difference>
+      <opacity_difference>red difference value</opacity_difference>
+    </fill_difference>
+    <new_point>
+      <new_x>Point Value</new_x>
+      <new_y>Point Value</new_y>
+    </new_point>
+    <point_difference/>
+    <!-- I ran out of time for now, I'll finish it later with a DTD -->
+  </mutation>
+  ...
 </mutation_history>
 
 </simulation>
@@ -53,8 +84,5 @@ This example uses polygons as the entity that defines the image, but one could j
 
 For now, only `polygon` is supposed so nothing else needs to go in `<phenotype>` yet.
 
-= Difference Formats =
-== Difference Format ==
-Shows only the difference between successful generations.  Gives the "surviving species'" history of evolution.
-== History Format ==
-Shows a complete history of the entire species, records every mutation as well as if it was successful or not.  Used for statistical analysis of success of different mutation probability distributions.
+== Mutation History Notes ==
+there can be at most two chromosome indexes and point indexes.  There has to be at least one chromosome index.  Other than that
