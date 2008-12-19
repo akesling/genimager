@@ -46,6 +46,8 @@ Note, the `<fill>` options are for color and black and white.  You only need to 
   <mutation generation="generation number">
     <success>True or False</success>
     <type>Mutation Type</type>
+    <mutation_range>Probability Range for this type of mutation</mutation_range>
+    <global_range>Probability range for all mutations</global_range>
     <!-- There is always 1 or 2 chromosome_index's -->
     <chromosome_index>Index Number</chromosome_index>
     <!-- There can be 0, 1 or 2 point_index's -->
@@ -71,8 +73,21 @@ Note, the `<fill>` options are for color and black and white.  You only need to 
       <new_x>Point Value</new_x>
       <new_y>Point Value</new_y>
     </new_point>
-    <point_difference/>
-    <!-- I ran out of time for now, I'll finish it later with a DTD -->
+    <point_difference>
+      <point_difference_sigma>sigma value</point_difference_sigma>
+      <radius>radius the point moved</radius>
+      <angle>angle for the direction the point moved</angle>
+    </point_difference>
+    <!-- This new_shape should only be used when inserting a new chromosome -->
+    <new_shape>
+      <phenotype>polygon</phenotype>
+      <!-- there are exactly three points for a new polygon -->
+      <point>
+        <x>Point Value</x>
+        <y>Point Value</y>
+      </point>
+      ...
+    </new_shape>
   </mutation>
   ...
 </mutation_history>
