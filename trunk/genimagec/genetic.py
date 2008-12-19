@@ -7,8 +7,8 @@ random.seed()
 
 run_id = str(random.randint(0,9999999999))
 ###########################################
-filename = "mona-lisa.jpg"
-#serial = "mona_del.gen"
+filename = "Captain_Jack_Sparrow.jpg"
+#serial = "images/1420723089_13220.gen"
 ###########################################
 base = Image.open(filename)
 base = base.convert('RGBA')
@@ -25,11 +25,13 @@ canon = Genome()
 mutant = Genome()
 grower = Image.new('RGBA',base.size) # Image from DNA
 
+###MAIN###
+#Load .gen file and set difference appropriately
 if locals().has_key("serial"):
 	canon.from_string(open(serial, "r").read())
-
-# MAIN
-difference = 5000000000000
+	difference = canon.diff(base)
+else:
+	difference = 5000000000000
 percent_diff = 100
 mutation_rate = 100
 counter = 0
