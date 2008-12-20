@@ -71,35 +71,35 @@ def add_genome(doc,genome,generation=None):
       if len(fill) == 4: # R,G,B,A ; color
          # red
          red_elem = doc.createElement('red')
-	 fill_elem.appendChild(red_elem)
-	 red_text = doc.createTextNode(str(fill[0]))
-	 red_elem.appendChild(red_text)
-	 # green
+         fill_elem.appendChild(red_elem)
+         red_text = doc.createTextNode(str(fill[0]))
+         red_elem.appendChild(red_text)
+         # green
          green_elem = doc.createElement('green')
-	 fill_elem.appendChild(green_elem)
-	 green_text = doc.createTextNode(str(fill[1]))
-	 green_elem.appendChild(green_text)
-	 # blue
+         fill_elem.appendChild(green_elem)
+         green_text = doc.createTextNode(str(fill[1]))
+         green_elem.appendChild(green_text)
+         # blue
          blue_elem = doc.createElement('blue')
-	 fill_elem.appendChild(blue_elem)
-	 blue_text = doc.createTextNode(str(fill[2]))
-	 blue_elem.appendChild(blue_text)
-	 # opacity
+         fill_elem.appendChild(blue_elem)
+         blue_text = doc.createTextNode(str(fill[2]))
+         blue_elem.appendChild(blue_text)
+         # opacity
          opacity_elem = doc.createElement('opacity')
-	 fill_elem.appendChild(opacity_elem)
-	 opacity_text = doc.createTextNode(str(fill[3]))
-	 opacity_elem.appendChild(opacity_text)
+         fill_elem.appendChild(opacity_elem)
+         opacity_text = doc.createTextNode(str(fill[3]))
+         opacity_elem.appendChild(opacity_text)
       else: # L, A ; grayscale
-	 # grayscale
+         # grayscale
          grayscale_elem = doc.createElement('grayscale')
-	 fill_elem.appendChild(grayscale_elem)
-	 grayscale_text = doc.createTextNode(str(fill[0]))
-	 grayscale_elem.appendChild(grayscale_text)
-	 # opacity
+         fill_elem.appendChild(grayscale_elem)
+         grayscale_text = doc.createTextNode(str(fill[0]))
+         grayscale_elem.appendChild(grayscale_text)
+         # opacity
          opacity_elem = doc.createElement('opacity')
-	 fill_elem.appendChild(opacity_elem)
-	 opacity_text = doc.createTextNode(str(fill[1]))
-	 opacity_elem.appendChild(opacity_text)
+         fill_elem.appendChild(opacity_elem)
+         opacity_text = doc.createTextNode(str(fill[1]))
+         opacity_elem.appendChild(opacity_text)
       # now add points
       shape_elem = doc.createElement('shape')
       chromosome_elem.appendChild(shape_elem)
@@ -112,22 +112,22 @@ def add_genome(doc,genome,generation=None):
       points = chromosome[1]
       for index in xrange(len(points)):
          point_elem = doc.createElement('point')
-	 shape_elem.appendChild(point_elem)
-	 index_attrib = doc.createAttribute('index')
-	 point_elem.setAttributeNode(index_attrib)
-	 point_elem.setAttribute('index',str(index))
-	 # x coordinate
-	 x_value = points[index][0]
-	 x_elem = doc.createElement('x')
-	 point_elem.appendChild(x_elem)
-	 x_text = doc.createTextNode(str(x_value))
-	 x_elem.appendChild(x_text)
-	 # y coordinate
-	 y_value = points[index][1]
-	 y_elem = doc.createElement('y')
-	 point_elem.appendChild(y_elem)
-	 y_text = doc.createTextNode(str(y_value))
-	 y_elem.appendChild(y_text)
+         shape_elem.appendChild(point_elem)
+         index_attrib = doc.createAttribute('index')
+         point_elem.setAttributeNode(index_attrib)
+         point_elem.setAttribute('index',str(index))
+         # x coordinate
+         x_value = points[index][0]
+         x_elem = doc.createElement('x')
+         point_elem.appendChild(x_elem)
+         x_text = doc.createTextNode(str(x_value))
+         x_elem.appendChild(x_text)
+         # y coordinate
+         y_value = points[index][1]
+         y_elem = doc.createElement('y')
+         point_elem.appendChild(y_elem)
+         y_text = doc.createTextNode(str(y_value))
+         y_elem.appendChild(y_text)
       # now just garbage cleanup and go home
       simulation.unlink()
       genetic_history.unlink()
@@ -136,15 +136,15 @@ def add_genome(doc,genome,generation=None):
       chrom_index_attrib.unlink()
       fill_elem.unlink()
       if len(fill) == 4: # unlink colors
-	 red_elem.unlink()
-	 red_text.unlink()
-	 blue_elem.unlink()
-	 blue_text.unlink()
-	 green_elem.unlink()
-	 green_text.unlink()
+         red_elem.unlink()
+         red_text.unlink()
+         blue_elem.unlink()
+         blue_text.unlink()
+         green_elem.unlink()
+         green_text.unlink()
       else: #unlink grayscale
          grayscale_elem.unlink()
-	 grayscale_text.unlink()
+         grayscale_text.unlink()
       opacity_elem.unlink()
       opacity_text.unlink()
       shape_elem.unlink()
