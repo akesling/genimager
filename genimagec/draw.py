@@ -34,7 +34,7 @@ def line(base, color, start, end):
 		intercept = y - slope*x
 		while x != end[0]:
 			x += dx
-			y = int(slope*x + intercept)
+			y = int(slope*x + intercept + 0.5)
 			old = base[x,y]
 			base[x,y] = pixel(old, color)
 	else:
@@ -48,6 +48,6 @@ def line(base, color, start, end):
 		intercept = x - y/slope
 		while y != end[1]:
 			y += dy
-			x = int(y/slope + intercept)
+			x = int(y/slope + intercept + 0.5)
 			old = base[x,y]
 			base[x,y] = pixel(old, color)
