@@ -16,6 +16,10 @@ import copy, random
 from math import pi, sin, cos
 global imagewidth, imageheight, color_mode
 
+## Maxima ##
+max_chromosomes = 255
+max_points = 255
+
 ########################
 ## Probability Values ##
 ########################
@@ -258,13 +262,14 @@ def place_chromosome(mutated_genome):
    Inserts a small chromosome with 3 points at a random index.
    This chromosome has a random color and opacity.
    """
-   index = random.randint(0,len(mutated_genome))
-   fill = random_fill()
-   shape = []
-   shape.append(random_point())
-   shape.append(near_point(shape[0]))
-   shape.append(near_point(shape[0]))
-   mutated_genome.insert(index, (fill,shape))
+   if len(mutated_genome) <= max_chromosomes:
+      index = random.randint(0,len(mutated_genome))
+      fill = random_fill()
+      shape = []
+      shape.append(random_point())
+      shape.append(near_point(shape[0]))
+      shape.append(near_point(shape[0]))
+      mutated_genome.insert(index, (fill,shape))
 
 ## Put Chromosome ##
 def put_chromosome(mutated_genome):
@@ -273,13 +278,14 @@ def put_chromosome(mutated_genome):
    Inserts a large chromosome with 3 points at a random index.
    This chromosome has a random color and opacity.
    """
-   index = random.randint(0,len(mutated_genome))
-   fill = random_fill()
-   shape = []
-   shape.append(random_point())
-   shape.append(far_point(shape[0]))
-   shape.append(far_point(shape[0]))
-   mutated_genome.insert(index, (fill,shape))
+   if len(mutated_genome) <= max_chromosomes:
+      index = random.randint(0,len(mutated_genome))
+      fill = random_fill()
+      shape = []
+      shape.append(random_point())
+      shape.append(far_point(shape[0]))
+      shape.append(far_point(shape[0]))
+      mutated_genome.insert(index, (fill,shape))
 
 ## Insert Chromosome ##
 def insert_chromosome(mutated_genome):
@@ -288,13 +294,14 @@ def insert_chromosome(mutated_genome):
    Inserts a random chromosome with 3 points at a random index.
    This chromosome has a random color and opacity.
    """
-   index = random.randint(0,len(mutated_genome))
-   fill = random_fill()
-   shape = []
-   shape.append(random_point())
-   shape.append(random_point())
-   shape.append(random_point())
-   mutated_genome.insert(index, (fill,shape))
+   if len(mutated_genome) <= max_chromosomes:
+      index = random.randint(0,len(mutated_genome))
+      fill = random_fill()
+      shape = []
+      shape.append(random_point())
+      shape.append(random_point())
+      shape.append(random_point())
+      mutated_genome.insert(index, (fill,shape))
 
 ## Remove Chromosome ##
 def remove_chromosome(mutated_genome):
@@ -590,10 +597,11 @@ def put_point(mutated_genome):
    Put a new point coordinate close to an existing one.
    """
    index = random.randint(0,len(mutated_genome)-1)
-   pointindex = random.randint(0,len(mutated_genome[index][1])-1)
-   point = mutated_genome[index][1][pointindex]
-   newpoint = near_point(point)
-   mutated_genome[index][1].insert(pointindex, newpoint)
+   if len(mutated_genome[index][1]) <= max_points:
+      pointindex = random.randint(0,len(mutated_genome[index][1])-1)
+      point = mutated_genome[index][1][pointindex]
+      newpoint = near_point(point)
+      mutated_genome[index][1].insert(pointindex, newpoint)
 
 ## Place Point ##
 def place_point(mutated_genome):
@@ -602,10 +610,11 @@ def place_point(mutated_genome):
    Put a new point coordinate far from to an existing one.
    """
    index = random.randint(0,len(mutated_genome)-1)
-   pointindex = random.randint(0,len(mutated_genome[index][1])-1)
-   point = mutated_genome[index][1][pointindex]
-   newpoint = far_point(point)
-   mutated_genome[index][1].insert(pointindex, newpoint)
+   if len(mutated_genome[index][1]) <= max_points:
+      pointindex = random.randint(0,len(mutated_genome[index][1])-1)
+      point = mutated_genome[index][1][pointindex]
+      newpoint = far_point(point)
+      mutated_genome[index][1].insert(pointindex, newpoint)
 
 ## Insert Point ##
 def insert_point(mutated_genome):
@@ -614,10 +623,11 @@ def insert_point(mutated_genome):
    Put a new point coordinate at random
    """
    index = random.randint(0,len(mutated_genome)-1)
-   pointindex = random.randint(0,len(mutated_genome[index][1])-1)
-   point = mutated_genome[index][1][pointindex]
-   newpoint = random_point
-   mutated_genome[index][1].insert(pointindex, newpoint)
+   if len(mutated_genome[index][1]) <= max_points:
+      pointindex = random.randint(0,len(mutated_genome[index][1])-1)
+      point = mutated_genome[index][1][pointindex]
+      newpoint = random_point()
+      mutated_genome[index][1].insert(pointindex, newpoint)
 
 ## Remove Point ##
 def remove_point(mutated_genome):
@@ -1105,8 +1115,8 @@ def near_point(oldpoint):
    """
    radius = random.gauss(0,shift_point_sigma*(imageheight+imagewidth)/2.)
    angle = random.uniform(0,pi)
-   Xval = radius*cos(angle)
-   Yval = radius*sin(angle)
+   Xval = int(radius*cos(angle))
+   Yval = int(radius*sin(angle))
    newpoint = (oldpoint[0]+Xval,oldpoint[1]+Yval)
    return newpoint
    
