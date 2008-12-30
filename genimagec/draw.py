@@ -6,7 +6,7 @@ def pixel(old, new):
 				int(old[1]*(1-opacity) + new[1]*opacity + 0.5), 
 				int(old[2]*(1-opacity) + new[2]*opacity + 0.5))
 
-	if len(new) == 3:
+	elif len(new) == 3:
 		return new
 
 def line(base, color, start, end):
