@@ -1,11 +1,9 @@
 import Image, ImageDraw, ImageChops, ImageStat
 import random, copy
-from chromosome import Chromosome
+from Settings.Genome import Basic as Settings
+from Chromosome import Polygon
 
-class Genome():
-	XMAX = 0
-	YMAX = 0
-	
+class Basic():
 	def __init__(self):
 		self.last_draw = None
 		
@@ -25,7 +23,7 @@ class Genome():
 		chromosomes = temp.split(";")	
 		
 		for chrom in chromosomes:
-			new_chrom = Chromosome(True)
+			new_chrom = Polygon(True)
 			new_chrom.from_string(chrom)
 			self.chromosomes.append(new_chrom)
 	
@@ -94,13 +92,13 @@ class Genome():
 			del self.chromosomes[random.randint(0,len(self.chromosomes)-1)]
    	
 	def add_chromosome(self):
-		self.chromosomes.append(Chromosome())
+		self.chromosomes.append(Polygon())
 	
 ##Fitness##
 	def draw(self): 
-		base_layer = Image.new('RGBA',(self.XMAX,self.YMAX))
+		base_layer = Image.new('RGBA',(Settings.XMAX,Settings.YMAX))
 		for chromosome in self.chromosomes:
-			chromosome.draw(base_layer)
+			base_layer = chromosome.draw(base_layer)
 		self.last_draw = base_layer
 		
 		return base_layer

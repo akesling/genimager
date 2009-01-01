@@ -1,14 +1,14 @@
-import genome
-from genome import Chromosome
-from genome import Genome
+import Settings
+from Chromosome import Polygon
+from Genome import Basic 
 import Image, ImageDraw, ImageChops, ImageStat
 import random, copy
 random.seed()
 
 run_id = str(random.randint(0,9999999999))
 ###########################################
-filename = "Captain_Jack_Sparrow.jpg"
-#serial = "images/1420723089_13220.gen"
+filename = "seeds/Captain_Jack_Sparrow.jpg"
+#serial = "genomes/runs/3074301915_1661.gen"
 ###########################################
 base = Image.open(filename)
 base = base.convert('RGBA')
@@ -16,13 +16,13 @@ base_pix = base.load()
 #base = ImageChops.invert(base) #
 Xmax, Ymax = base.size
 
-Genome.XMAX = Xmax
-Genome.YMAX = Ymax
-Chromosome.set_size(Xmax, Ymax)
-Chromosome.set_range(100)
+Settings.Genome.Basic.XMAX = Xmax
+Settings.Genome.Basic.YMAX = Ymax
+Settings.Chromosome.Polygon.set_size(Xmax, Ymax)
+Settings.Chromosome.Polygon.set_range(100)
 
-canon = Genome()
-mutant = Genome()
+canon = Basic()
+mutant = Basic()
 grower = Image.new('RGBA',base.size) # Image from DNA
 
 ###MAIN###
@@ -48,7 +48,7 @@ try:
 		if (counter % 50 == 0):
 			print counter
 		canon.gene_transfer(mutant)
-		Chromosome.set_range(min(100, percent_diff))
+		Settings.Chromosome.Polygon.set_range(min(100, percent_diff))
 		mutant.mutate(mutation_rate)
 		mdifference = mutant.diff(base)
 		if mdifference <= difference:
@@ -72,8 +72,8 @@ try:
 					 int(counter / (100-percent_diff))
 			since_change = 0
 except KeyboardInterrupt:
-	grower.save("./images/"+ run_id +"_"+ str(counter) +".jpg", "JPEG")
-	gene_file = open("./images/"+ run_id +"_"+ str(counter) +".gen", "w")
+	grower.save("images/"+ run_id +"_"+ str(counter) +".jpg", "JPEG")
+	gene_file = open("genomes/runs/"+ run_id +"_"+ str(counter) +".gen", "w")
 	gene_file.write(str(canon))
 	gene_file.close()
 	
